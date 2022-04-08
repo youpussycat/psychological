@@ -7,22 +7,23 @@
   </a-carousel>
 </template>
 <script>
-  import { defineComponent } from 'vue';
+  import { defineComponent} from 'vue';
   import {Carousel} from "ant-design-vue";
   export default defineComponent({
-
-
     setup() {
+
       const onChange = current => {
         console.log(current);
       };
 
       return {
+
         onChange,
       };
     },
     components:{
       ACarousel:Carousel,
+
     }
 
   });

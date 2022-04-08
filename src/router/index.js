@@ -7,6 +7,8 @@ const Register = () => import("../components/RegisterPage/Register");
 const SideBar = () => import("../components/Global/SideBar");
 const TopLogo = () => import("../components/Global/TopLogo");
 const HelloWorld = ()=> import("../components/HelloWorld");
+const ExampleCourses = ()=> import("../components/HomePage/ExampleCourses");
+
 const routes = [
 
 	{
@@ -48,6 +50,11 @@ const routes = [
 		path: '/HelloWorld',
 		name: 'HelloWorld',
 		component: HelloWorld,
+	},
+	{//规定名称为HelloWorld的组件的component、path
+		path: '/HomePage/ExampleCourses',
+		name: 'ExampleCourses',
+		component: ExampleCourses,
 	},
 ]
 export const router = createRouter({

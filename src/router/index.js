@@ -7,13 +7,8 @@ const Register = () => import("../components/RegisterPage/Register");
 const SideBar = () => import("../components/Global/SideBar");
 const TopLogo = () => import("../components/Global/TopLogo");
 const HelloWorld = ()=> import("../components/HelloWorld");
-const FamousTeacherStyle = ()=> import("../components/Global/FamousTeacherStyle")
 const routes = [
-	{
-		path: '/Global/FamousTeacherStyle',
-		name: 'FamousTeacherStyle',
-		component: FamousTeacherStyle,
-	},
+
 	{
 		path: '/Global/Banner',
 		name: 'Banner',

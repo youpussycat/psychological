@@ -5,7 +5,7 @@
 <!--    <script src="../../assets/vendor/js/ace.min.js"></script>-->
     <div id="sidebar" class="sidebar responsive ace-save-state"
          data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
-      <ul class="nav nav-list" style="top: 0px;">
+      <ul class="nav nav-list" style="top: 0;">
         <li class="">
           <a href="#">
             <i class="menu-icon fa fa-tachometer"></i>

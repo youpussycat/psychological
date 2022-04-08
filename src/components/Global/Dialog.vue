@@ -12,7 +12,7 @@
             <input :type="it[3]" :placeholder="it[0]" :id = "it[1]" class="DiaInput">
             <input type="checkbox" :id = "'eye' + it[1]" style="display: none;">
             <label :for="'eye' + it[1]" class="eyeCheck" @click="buttonClick($event,it[2])">
-              <img src="../../assets/img/eye.png" class="eyes" :style="'display:'+it[2] ">
+              <img src="../../assets/img/eye.png" class="eyes" :style="'display:'+it[2] " alt="图片">
             </label>
           </label>
         </div>

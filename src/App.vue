@@ -7,17 +7,16 @@
 </template>
 
 <script>
-  import TopLogo from "@/components/Global/TopLogo";
+  //import TopLogo from "@/components/Global/TopLogo";  复用组件引入
   export default {//暴露组件
     name: 'App',
     components: {
-      ATopLogo:TopLogo,
+      //ATopLogo:TopLogo, 复用组件注册
     },
 
     methods: {
       draw (canv, w, h) {
         let contex = canv.getContext('2d');//获取canvas对应的上下文
-        let log = new Image();//创建一个img dom对象
         //设置当前画布大小
         canv.width = w;
         canv.height = h;

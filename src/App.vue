@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-
-    <a-top-logo></a-top-logo>
-    <router-link to="/Login">Login</router-link>
+    <!--<a-top-logo></a-top-logo>    组件复用-->
+    <!--<router-link to="/Login">Login</router-link> 跳转组件写法-->
     <router-view/><!--表示我现在要用到router中的东西，会从路由中查找-->
   </div>
 </template>

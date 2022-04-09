@@ -8,13 +8,18 @@ const SideBar = () => import("../components/Global/SideBar");
 const TopLogo = () => import("../components/Global/TopLogo");
 const HelloWorld = ()=> import("../components/HelloWorld");
 const ExampleCourses = ()=> import("../components/HomePage/ExampleCourses");
-
+const IndexTrainingCaro = ()=> import("../components/Carousels/IndexTrainingCaro");
 const routes = [
 
 	{
 		path: '/Global/Banner',
 		name: 'Banner',
 		component: Banner,
+	},
+	{
+		path:'/Carousels/IndexTrainingCaro',
+		name:'IndexTrainingCaro',
+		component:IndexTrainingCaro,
 	},
 	{
 		path: '/Global/Dialog',

@@ -1,38 +1,129 @@
 <template>
-  <div class="main-container ace-save-state" id="main-container">
-<!--    <script src="../../assets/vendor/js/jquery.min.js"></script>-->
-<!--    <script src="../../assets/vendor/js/bootstrap.min.js"></script>-->
-<!--    <script src="../../assets/vendor/js/ace.min.js"></script>-->
-    <div id="sidebar" class="sidebar responsive ace-save-state"
-         data-sidebar="true" data-sidebar-scroll="true" data-sidebar-hover="true">
-      <ul class="nav nav-list" style="top: 0;">
-        <li class="">
-          <a href="#">
-            <i class="menu-icon fa fa-tachometer"></i>
-            <span class="menu-text"> Dashboard </span>
-          </a>
-          <b class="arrow"></b>
-        </li>
-      </ul>
+  <div id="sideBarContext">
+    <div id="breadCrumbContext">
+        <a-breadcrumb separator=">">
+          <div id="iconHome"><home-outlined /></div>
+          <a-breadcrumb-item v-for="_item in breadCrumbList" v-bind:href="_item.href">
+            {{_item.name}}
+          </a-breadcrumb-item>
+        </a-breadcrumb>
     </div>
-<!--    <link rel="stylesheet" href="../../assets/vendor/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="../../assets/vendor/css/font-awesome.min.css">-->
-<!--    <link rel="stylesheet" href="../../assets/vendor/css/ace.min.css"-->
-<!--          class="ace-main-stylesheet" id="main-ace-style">-->
+    <div id="barContext">
+      <div id="barHeader">
+        <div id="barHeaderContent">
+          <p id="barHeaderText">{{HeaderBar.name}}</p>
+          <p id="barHeaderTip">{{HeaderBar.tip}}</p>
+        </div>
+      </div>
+      <div id="barList">
+        <div class="Bar" v-for="(bar,index) in SideBarList" :active="index==nowIndex">
+          <a href="#" class="BarText">{{bar}}</a>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  import { defineComponent} from 'vue';
+  import { Breadcrumb } from "ant-design-vue";
+  import { HomeOutlined, UserOutlined } from '@ant-design/icons-vue';
   export default {
     name: "SideBar",
-    data() {
-      return {};
+    components: {
+        ABreadcrumb:Breadcrumb,
+        ABreadcrumbItem:Breadcrumb.Item,
+        HomeOutlined,
+        UserOutlined,
     },
-    methods: {},
+    data() {
+      return {
+        breadCrumbList:[
+          {name:"首页",href:"#sideBarContext"},
+          {name:"意见反馈",href:"#sideBarContext"},
+        ],
+        HeaderBar:{name:"帮助中心",tip:"Help Center"},
+        SideBarList:[
+            "关于我们",
+            "法律声明",
+            "意见反馈",
+            "举报监督"
+        ],
+        nowIndex:3 //从0计数
+      };
+    },
+    methods: {
+
+    },
+    mounted(){
+
+    },
   }
 </script>
 
 <style scoped>
+  #sideBarContext{
+    width: 240px;
+    background: #FFF;
+  }
+  #breadCrumbContext{
+    padding:20px 0;
+  }
+  #iconHome{
+    margin-right: 10px;
+    display: inline;
+  }
+  p{
+    display: inline;
+  }
+  #barHeaderText{
+    margin-left: 24px;
+    font-size: 16px;
+    color: #053679;
+    font-weight: bolder;
+  }
+  #barList{
+    border: 1px solid #F0F0F0;
+  }
+  #barHeaderTip{
+    font-size: 12px;
+    color: #333;
+    opacity: 16%;
+
+    left:10px;
+    margin:0;
+    position:relative;
+  }
+  #barContext{
+    width:240px;
+  }
+  #barHeader,.Bar{
+    height: 50px;
+    border: 1px solid #F0F0F0;
+    border-left: 0;
+  }
+  #barHeader{
+    width: 240px;
+    background: #F8F8F8;
+    border-top: 2px solid rgb(5,54,121);
+    position: relative;
+    vertical-align: middle;
+  }
+  .Bar{
+    width: 205px;
+    margin-left: 35px;
+  }
+  .Bar[active=true]{
+    font-weight: bolder;
+    color: #043278;
+  }
+  .BarText{
+    font-size: 16px;
+  }
+  #barHeaderContent,.BarText{
+    top:17px;
+    position:relative;
+  }
   @import url("../../assets/vendor/css/bootstrap.min.css");
   @import url("../../assets/vendor/css/font-awesome.min.css");
   @import url("../../assets/vendor/css/ace.min.css");

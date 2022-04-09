@@ -1,45 +1,48 @@
 <template>
-  <div>
-    <a-pagination v-model:current="current1" show-quick-jumper :total="500" @change="onChange" />
-    <br />
+  <div id="paginationContext">
     <a-pagination
-            v-model:current="current2"
-            show-quick-jumper
-            :total="500"
-            disabled
-            show-less-items
-            @change="onChange"
+            v-model:current="current1"
+            show-quick-jumper :total="totalCount"
+            @change="onChange" @showSizeChange="showSizeChange"
+            :show-total="total => `共 ${total} 条`"
     />
   </div>
 </template>
 
 <script>
-  import { defineComponent, ref } from 'vue';
+  import { Pagination} from 'ant-design-vue';
   export default {
     name: 'PageIndexGroup',
-    components: {},
+    components: {
+        APagination:Pagination,
+    },
     setup() {
-        const current1 = ref<number>(1);
-        const current2 = ref<number>(2);
-        const onChange = (pageNumber: number) => {
-            console.log('Page: ', pageNumber);
+        const onChange = (pageNumber) => {
+            console.log('翻页到: ', pageNumber);
+        };
+        const showSizeChange = (page,size)=>{
+            console.log("改变容量: 页码",page,"  容量: ",size);
         };
         return {
-            current1,
-            current2,
             onChange,
+            showSizeChange
         };
     },
     data () {
       return {
+          totalCount:Math.floor(Math.random()*1000),
       }
     }
   }
 </script>
 
 <style scoped>
-
-  @import url("../../../assets/vendor/css/bootstrap.min.css");
-  @import url("../../../assets/vendor/css/font-awesome.min.css");
-  @import url("../../../assets/vendor/css/ace.min.css");
+  #paginationContext{
+    width: fit-content;
+    height: 32px;
+    background-color: #FFF;
+  }
+  /*@import url("../../../assets/vendor/css/bootstrap.min.css");*/
+  /*@import url("../../../assets/vendor/css/font-awesome.min.css");*/
+  /*@import url("../../../assets/vendor/css/ace.min.css");*/
 </style>

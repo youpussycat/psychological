@@ -16,8 +16,8 @@
         </div>
       </div>
       <div id="barList">
-        <div class="Bar" v-for="(bar,index) in SideBarList" :active="index==nowIndex">
-          <a href="#" class="BarText">{{bar}}</a>
+        <div class="Bar" v-for="(_bar,_index) in SideBarList" :active="_index==nowIndex">
+          <a :href="_bar.href" class="BarText">{{_bar.name}}</a>
         </div>
       </div>
     </div>
@@ -39,15 +39,15 @@
     data() {
       return {
         breadCrumbList:[
-          {name:"首页",href:"#sideBarContext"},
-          {name:"意见反馈",href:"#sideBarContext"},
+          {name:"首页",href:"#"},
+          {name:"意见反馈",href:"#"},
         ],
         HeaderBar:{name:"帮助中心",tip:"Help Center"},
         SideBarList:[
-            "关于我们",
-            "法律声明",
-            "意见反馈",
-            "举报监督"
+            {name:"关于我们",href:"javascript:;"},
+            {name:"法律声明",href:"javascript:;"},
+            {name:"意见反馈",href:"javascript:;"},
+            {name:"举报监督",href:"javascript:;"},
         ],
         nowIndex:3 //从0计数
       };

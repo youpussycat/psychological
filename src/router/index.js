@@ -1,31 +1,10 @@
 import { createRouter,createWebHashHistory} from "vue-router";
-const Banner = () => import("../components/Global/Banner");
-const Dialog = () => import("../components/Global/Dialog");
 const Index = () => import("../components/Page/Index");
 const Login = () => import("../components/RegisterPage/Login");
 const Register = () => import("../components/RegisterPage/Register");
-const SideBar = () => import("../components/Global/SideBar");
-const TopLogo = () => import("../components/Global/TopLogo");
 const HelloWorld = ()=> import("../components/HelloWorld");
-const ExampleCourses = ()=> import("../components/HomePage/ExampleCourses");
-const IndexTrainingCaro = ()=> import("../components/Carousels/IndexTrainingCaro");
-const routes = [
+let routes = [
 
-	{
-		path: '/Global/Banner',
-		name: 'Banner',
-		component: Banner,
-	},
-	{
-		path:'/Carousels/IndexTrainingCaro',
-		name:'IndexTrainingCaro',
-		component:IndexTrainingCaro,
-	},
-	{
-		path: '/Global/Dialog',
-		name: 'Dialog',
-		component: Dialog,
-	},
 	{
 		path:'/',
 		name:'Index',
@@ -41,27 +20,19 @@ const routes = [
 		path: '/Register',
 		component:Register,
 	},
-	{
-		path: '/Global/SideBar',
-		name: 'SideBar',
-		component: SideBar,
-	},
-	{//规定名称为HelloWorld的组件的component、path
-		path: '/Global/TopLogo',
-		name: 'TopLogo',
-		component: TopLogo,
-	},
 	{//规定名称为HelloWorld的组件的component、path
 		path: '/HelloWorld',
 		name: 'HelloWorld',
 		component: HelloWorld,
 	},
-	{//规定名称为HelloWorld的组件的component、path
-		path: '/HomePage/ExampleCourses',
-		name: 'ExampleCourses',
-		component: ExampleCourses,
-	},
 ]
+import {_global} from "./Global";
+routes=routes.concat(_global);
+import {_carousels} from "./Carousels";
+routes=routes.concat(_carousels);
+import {_homePage} from "./HomePage/HomePage";
+routes=routes.concat(_homePage);
+
 export const router = createRouter({
 	history: createWebHashHistory(),
 	routes: routes

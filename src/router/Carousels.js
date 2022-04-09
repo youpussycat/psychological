@@ -1,10 +1,10 @@
 
-const IndexTrainingCaro = ()=> import("../components/Carousels/IndexTrainingCaro");
+const IndexTrainingCaro = ()=> import("../components/Carousels/IndexTrainingProCaro");
 let PATH="/Carousels";
 export const _carousels= [
     {
-        path:PATH+'/IndexTrainingCaro',
-        name:'IndexTrainingCaro',
+        path:PATH+'/IndexTrainingProCaro',
+        name:'IndexTrainingProCaro',
         component:IndexTrainingCaro,
     },
 ]

@@ -1,19 +1,22 @@
 <template>
   <div class="container">
-    <div class="head" style="border-bottom:1px solid #6a6464; padding-bottom: 5px">
-      {{head.teacher}}
+    <div style="border-bottom:1px solid #6a6464; padding-bottom: 5px">
+      <span class="head">
+        {{head.teacher}}&nbsp;&nbsp;
+      </span>
+      <span class="head" style="color: #b8b4b4" v-html="head.teacher1"></span>
     </div>
     <div class="main">
       <span>
         <img :src="teacher.src" alt="" class="teacher_img">
       </span>
       <div>
-        <div class="head teacher_head" style="font-size: 30px">{{teacher.name}}介绍</div>
+        <div class="head teacher_head" style="font-size: 30px; font-weight: 800;">{{teacher.name}}介绍</div>
         <div class="context" v-for="con in teacher.context">{{con}}</div>
       </div>
       <div style="border-bottom:1px solid #6a6464; height: 30px "></div>
       <div>
-        <div class="head" style="padding-top: 30px">{{head.video}}</div>
+        <div class="head" style="padding-top: 30px; color: #000000">{{head.video}}</div>
         <span class="Related_Video" v-for="video in video"></span>
       </div>
     </div>
@@ -27,7 +30,8 @@ export default {
     return {
       head: {
         teacher: "名师风采",
-        video: "相关视频"
+        teacher1: "/&nbsp;&nbsp;Famous Teacher Style",
+        video: "相关视频:"
       },
       teacher: {
         src: require("../../assets/img/logo.png"),
@@ -59,11 +63,10 @@ export default {
   .head {
     color: #284F8AFF;
     font-size: 20px;
-    font-weight: 800;
   }
   .teacher_img {
     float: left;
-    width: 300px;
+    width: 500px;
   }
   .teacher_head {
     padding: 20px 20px 20px 20px;
@@ -72,9 +75,9 @@ export default {
     padding: 10px 10px 10px 10px;
   }
   .context {
-    padding: 10px 10px 10px 10px;
+    padding: 15px 15px 15px 15px;
     font-size: initial;
-    line-height: 25px;
+    line-height: 30px;
     text-indent : 33px;
   }
   .Related_Video {

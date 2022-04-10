@@ -4,6 +4,7 @@ const IndexTrainingPro = () => import("../../components/HomePage/IndexTrainingPr
 const RightSidebar = () => import("../../components/HomePage/RightSidebar")
 const MenuBar = () => import("../../components/HomePage/MenuBar")
 const Footer = () => import("../../components/HomePage/Footer")
+const Button = () => import("../../components/HomePage/Button")
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path
@@ -32,6 +33,11 @@ let __homePage= [
         path: PATH+'/Footer',
         name:'Footer',
         component: Footer,
+    },
+    {
+        path: PATH+'/Button',
+        name:'Button',
+        component: Button,
     },
 ]
 import {_elegantTeachers} from "./ElegantTeachers";

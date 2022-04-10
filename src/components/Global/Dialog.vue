@@ -1,7 +1,6 @@
 <template>
   <div class="DiaTotal">
 
-    <form id="Dialog">
       <div class="Tittle">
         <p class="TittleWords">{{title}}</p>
       </div>
@@ -9,7 +8,7 @@
         <!--//提示，input标签的id,是否展示眼睛复选框，input的type-->
         <div v-for="it in inputs">
           <label :for="it[1]">
-            <input :type="it[3]" :placeholder="it[0]" :id = "it[1]" class="DiaInput">
+            <input v-model="content[it[4]]"  :type="it[3]" :placeholder="it[0]" :id = "it[1]" class="DiaInput" :name="it[4]">
             <input type="checkbox" :id = "'eye' + it[1]" style="display: none;">
             <label :for="'eye' + it[1]" class="eyeCheck" @click="buttonClick($event,it[2])">
               <img src="../../assets/img/eye.png" class="eyes" :style="'display:'+it[2] " alt="图片">
@@ -22,33 +21,45 @@
             <span class="rememberWords" >记住密码</span>
           </label>
         </div>
-        <button class="DiaButton" v-on:click="judge()">
+        <button class="DiaButton" v-on:click="button(this)">
           <span>{{mes}}</span>
         </button>
       </div>
 
-    </form>
     <a :href="lefthref" class="downLHref">{{leftbutton}}</a>
     <a :href="righthref" class="downRHref">{{rightbutton}}</a>
   </div>
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
+    // eslint-disable-next-line vue/multi-word-component-names
     name: "Dialog",
     data(){
       return{
         display: "block",
-        //提示，input标签的id,是否展示眼睛复选框，input的type
-        inputs: [["请输入账号/学号/手机号","userAccount","none","text"],["请输入密码","password","block","password"]],
+        //提示，input标签的id,是否展示眼睛复选框，input的type,input的name属性
+        inputs: [
+                ["请输入账号/学号/手机号","userAccount","none","text","account1"]
+              ,["请输入密码","password","block","password","password1"],
+
+        ],
         title: "账号登录",
+
         mes: "登 录",
         leftbutton: "注册",
         rightbutton: "忘记密码",
         lefthref: "",
         righthref: "",
-        judge:function () {
+        content:{
+          account1:"",
+          password1:""
+        } ,
+        judge:function (self) {
           console.log("judge");
+          this.$bus.emit("验证",);
+          self.$router.push('/Test')
         }
       }
     },
@@ -63,6 +74,29 @@
           e.target.src= require('../../assets/img/eye.png');
           e.currentTarget.parentElement.firstElementChild.type="text";
         }
+      },
+      change: function(e,index) {
+        console.log(e.target.value);//实时获取输入值
+        console.log(index);//获取点击输入框的索引
+      },
+      button(self) {
+        console.log(self);
+        axios.get('/api',{
+          params: {
+            account: self.content['account1'],
+            password: self.content['password1'],
+          }
+        })
+                .then(response => {
+                  this.info = response;
+                  console.log(response);
+
+                  this.judge(self);
+
+                })
+                .catch(function (error) { // 请求失败处理
+                  console.log(error);
+                });
       }
     },
     mounted(){

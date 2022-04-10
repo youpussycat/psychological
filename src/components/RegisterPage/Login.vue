@@ -15,9 +15,12 @@
 
 <script>
   import Dialog from "../Global/Dialog";
+  import axios from 'axios';
 	export default {
+      // eslint-disable-next-line vue/multi-word-component-names
 		name: "Login",
     components: {
+      // eslint-disable-next-line no-mixed-spaces-and-tabs
 		  Dialog,
     },
     data() {
@@ -28,7 +31,7 @@
     },
 
     mounted(){
-
+      console.log(axios);
     },
 
 	}

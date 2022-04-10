@@ -1,8 +1,8 @@
-
+const PictureWall = () => import("../components/Global/PictureWall")
 const SideBar = () => import("../components/Global/SideBar");
 const Banner = () => import("../components/Global/Banner");
 const Dialog = () => import("../components/Global/Dialog");
-const TopLogo = () => import("../components/Global/TopLogo");
+const PageHeader = () => import("../components/Global/PageHeader");
 let PATH="/Global"
 export const _global= [
     {
@@ -10,10 +10,15 @@ export const _global= [
             name: 'SideBar',
         component: SideBar,
     },
+    {
+        path: PATH+'/PictureWall',
+        name: 'PictureWall',
+        component: PictureWall,
+    },
     {//规定名称为HelloWorld的组件的component、path
-        path: PATH+'/TopLogo',
-        name: 'TopLogo',
-        component: TopLogo,
+        path: PATH+'/PageHeader',
+        name: 'PageHeader',
+        component: PageHeader,
     },
     {
         path: PATH+'/Dialog',

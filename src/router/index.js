@@ -1,20 +1,27 @@
 import { createRouter,createWebHashHistory} from "vue-router";
-const Index = () => import("../components/Page/Index");
+//const Index = () => import("../components/Page/Index");
 const Login = () => import("../components/RegisterPage/Login");
 const Register = () => import("../components/RegisterPage/Register");
 const HelloWorld = ()=> import("../components/HelloWorld");
+const Test = () => import("../components/Test");
 let routes = [
-
+	{
+		path:'/Test',
+		name:'Test',
+		component: Test,
+	},
 	{
 		path:'/',
-		name:'Index',
-		component: Index,
+		name:'Login',
+		component: Login,
 	},
+	/*
 	{
 		path: "/Login",
 		name: 'Login',
 		component: Login,
 	},
+	*/
 	{
 		name: "Register",
 		path: '/Register',

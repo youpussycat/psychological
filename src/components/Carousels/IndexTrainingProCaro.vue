@@ -61,7 +61,7 @@
 	.ant-carousel ::v-deep(.slick-dots){
 		margin-right: 0;
 		margin-left: auto;
-		width: 10%;
+		width: 20%;
 	}
 	.ant-carousel ::v-deep(.slick-active), .ant-carousel ::v-deep(li),.ant-carousel ::v-deep(.slick-dots li.slick-active){
 		width: auto;

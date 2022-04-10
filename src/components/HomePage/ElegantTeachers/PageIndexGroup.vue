@@ -1,20 +1,23 @@
 <template>
   <div id="paginationContext">
-    <a-pagination
-            v-model:current="current1"
-            show-quick-jumper :total="totalCount"
-            @change="onChange" @showSizeChange="showSizeChange"
-            :show-total="total => `共 ${total} 条`"
-    />
+    <a-config-provider :locale="zh_CN">
+      <a-pagination
+              show-quick-jumper :total="totalCount"
+              @change="onChange" @showSizeChange="showSizeChange"
+              :show-total="total => `共 ${total} 条`"
+      />
+    </a-config-provider>
   </div>
 </template>
 
 <script>
-  import { Pagination} from 'ant-design-vue';
+  import zh_CN from "ant-design-vue/lib/locale-provider/zh_CN";
+  import { Pagination, ConfigProvider} from 'ant-design-vue';
   export default {
     name: 'PageIndexGroup',
     components: {
         APagination:Pagination,
+        AConfigProvider:ConfigProvider
     },
     setup() {
         const onChange = (pageNumber) => {
@@ -31,6 +34,7 @@
     data () {
       return {
           totalCount:Math.floor(Math.random()*1000),
+          zh_CN
       }
     }
   }

@@ -10,10 +10,17 @@ axios.interceptors.request.use(
         if(config.url.indexOf("/api")===0){//如果是进行后台请求
             const tokenHead = localStorage.getItem("token_type");
             const tokenBody = localStorage.getItem("access_token")
-            if(tokenHead && tokenBody){//如果存在
-                config.headers.authorization = `${tokenHead} ${tokenBody}`;
-            }else{
+            if("/api/auth/oauth/token"){//登陆url
                 config.headers.Authorization = "Basic eGJyOmNvbS54Ynl=";
+            }else if(tokenHead && tokenBody){//如果存在
+                config.headers.authorization = `${tokenHead} ${tokenBody}`;
+            }else{//不是登陆但没有token，转回登陆界面
+                // 未登录 -跳转登录页面，并携带当前页面的路径 之后跳回？
+                router.replace({
+                    path: '/login',query: {
+                        redirect: router.currentRoute.fullPath
+                    }
+                });
             }
         }
 

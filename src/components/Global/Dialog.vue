@@ -104,9 +104,7 @@
                 if (this.inputs[i][3]==="password") {
                     document.getElementsByClassName("DiaInput")[i].parentElement.children[2].firstElementChild.src=require('../../assets/img/eye_close.png')
                 }
-
             }
-
         }
     }
 </script>

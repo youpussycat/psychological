@@ -18,7 +18,7 @@
 			test:function(){
 				let _self = this;
 				ajax({
-					url:"admin/user/getUserInfo",
+					url:"/api/admin/user/getUserInfo",
 					success:(res) => {
 						console.log("res.data:");
 						console.log(res.data);

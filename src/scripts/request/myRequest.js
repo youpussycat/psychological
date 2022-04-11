@@ -7,12 +7,14 @@ axios.interceptors.request.use(
         // 每次发送请求之前判断是否存在token        
         // 如果存在，则统一在http请求的header都加上token，这样后台根据token判断你的登录情况
         // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断 
-        const tokenHead = localStorage.getItem("token_type");
-        const tokenBody = localStorage.getItem("access_token")
-        if(tokenHead && tokenBody){//如果存在
-            config.headers.authorization = `${tokenHead} ${tokenBody}`;
-        }else{
-            config.headers.Authorization = "Basic eGJyOmNvbS54Ynl=";
+        if(config.url.indexOf("/api")===0){//如果是进行后台请求
+            const tokenHead = localStorage.getItem("token_type");
+            const tokenBody = localStorage.getItem("access_token")
+            if(tokenHead && tokenBody){//如果存在
+                config.headers.authorization = `${tokenHead} ${tokenBody}`;
+            }else{
+                config.headers.Authorization = "Basic eGJyOmNvbS54Ynl=";
+            }
         }
 
         //若出错会抛出给下面的onRejected

@@ -44,12 +44,10 @@
 			const previewVisible = ref(false);
 			const previewImage = ref('');
 			const previewTitle = ref('');
-			const fileList = ref([{
-				uid: '-1',
-				name: 'image.png',
-				status: 'done',
-				url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
-			}, {
+			const fileList = ref([
+				//uid:文件唯一标识，建议设置为负数，防止和内部产生的 id 冲突
+				//  name文件名称   status状态   url图片显示路径
+				{
 				uid: '-2',
 				name: 'image.png',
 				status: 'done',

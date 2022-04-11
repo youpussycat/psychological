@@ -4,12 +4,14 @@ import {Router as router} from "vue-router";
 axios.defaults.timeout = 10000;
 axios.interceptors.request.use(
     config=>{
+        // eslint-disable-next-line no-irregular-whitespace
         // 每次发送请求之前判断是否存在token        
+        // eslint-disable-next-line no-irregular-whitespace
         // 如果存在，则统一在http请求的header都加上token，这样后台根据token判断你的登录情况
         // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断 
-        const token = store.state.token;
-        token && (config.headers.Authorization = token);
-        return config;
+        // const token = store.state.token;
+        // token && (config.headers.Authorization = token);
+        // return config;
     },error=>{
         return Promise.error(error);
     }
@@ -30,6 +32,8 @@ axios.interceptors.response.use(
     // 然后根据返回的状态码进行一些操作，例如登录过期提示，错误提示等等
     // 下面列举几个常见的操作，其他需求可自行扩展
     error => {
+        console.log("error");
+        return false;
         if (error.response.status) {
             switch (error.response.status) {
                 case 401:// 401: 未登录 -跳转登录页面，并携带当前页面的路径 之后跳回？
@@ -71,6 +75,9 @@ export const ajax=(obj)=>{
                 username:obj.username,
                 password:obj.password,
                 scope:"all",loginFromType:1
+            },
+            headers:{
+                Authorization:"Basic eGJyOmNvbS54Ynl="
             }
         }).then((res)=>{
             localStorage.setItem("access_token",res.data.access_token);
@@ -87,9 +94,10 @@ export const ajax=(obj)=>{
         _method=axios.post;
     }
     let tokenType=localStorage.getItem("token_type");
-    let _config= {params:obj.data,headers:{}};
-    _config.headers[tokenType]=localStorage.getItem("access_token");
-
+    let _config= {params:obj.data,headers:{
+            authorization:tokenType+" "+localStorage.getItem("access_token")
+        }
+    };
     return _method(obj.url,_config).then((res)=>{
         //?
         obj.success(res);

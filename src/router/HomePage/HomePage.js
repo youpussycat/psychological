@@ -12,13 +12,18 @@ const Footer = () => import("../../components/HomePage/Footer")
 const Button = () => import("../../components/HomePage/Button")
 const Banner = () => import("../../components/HomePage/Banner")
 const Teacher = () => import("../../components/HomePage/Teacher")
-
+const PageHeaderGroup = () => import("../../components/HomePage/PageHeaderGroup");
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path
         path: PATH+'/ExampleCourses',
         name: 'ExampleCourses',
         component: ExampleCourses,
+    },
+    {
+        name: "PageHeaderGroup",
+        component: PageHeaderGroup,
+        path: PATH + '/PageHeaderGroup'
     },
 
     {

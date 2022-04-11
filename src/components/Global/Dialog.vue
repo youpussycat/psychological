@@ -58,7 +58,7 @@
         } ,
         judge:function (self) {
           console.log("judge");
-          this.$bus.emit("验证",);
+          this.$bus.emit("验证",self.content);
           self.$router.push('/Test')
         }
       }

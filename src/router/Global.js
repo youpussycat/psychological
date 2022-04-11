@@ -3,12 +3,18 @@ const SideBar = () => import("../components/Global/SideBar");
 const Banner = () => import("../components/Global/Banner");
 const Dialog = () => import("../components/Global/Dialog");
 const PageHeader = () => import("../components/Global/PageHeader");
+const NoticeList = () => import("../components/Global/NoticeList");
 let PATH="/Global"
 export const _global= [
     {
         path: PATH+'/SideBar',
             name: 'SideBar',
         component: SideBar,
+    },
+    {
+        path: PATH+'/NoticeList',
+        name: 'NoticeList',
+        component: NoticeList,
     },
     {
         path: PATH+'/PictureWall',

@@ -12,7 +12,7 @@ module.exports = defineConfig({
   },
   transpileDependencies: true,
   devServer: {
-    port: 7500, // 端口
+    port: 8089, // 端口
     proxy: {
       '/api': { //请求路径关键字
         target: 'http://127.0.0.1:7500/', //对应自己的接口

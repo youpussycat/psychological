@@ -3,22 +3,27 @@ import {Router as router} from "vue-router";
 
 axios.defaults.timeout = 10000;
 axios.interceptors.request.use(
-    config=>{
-        // eslint-disable-next-line no-irregular-whitespace
+    config=>{//每次请求时 执行 config为ajax的obj
         // 每次发送请求之前判断是否存在token        
-        // eslint-disable-next-line no-irregular-whitespace
         // 如果存在，则统一在http请求的header都加上token，这样后台根据token判断你的登录情况
         // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断 
-        // const token = store.state.token;
-        // token && (config.headers.Authorization = token);
-        // return config;
+        const tokenHead = localStorage.getItem("token_type");
+        const tokenBody = localStorage.getItem("access_token")
+        if(tokenHead && tokenBody){//如果存在
+            config.headers.authorization = `${tokenHead} ${tokenBody}`;
+        }else{
+            config.headers.Authorization = "Basic eGJyOmNvbS54Ynl=";
+        }
+
+        //若出错会抛出给下面的onRejected
+        return config;
     },error=>{
         return Promise.error(error);
     }
 );
 
 axios.interceptors.response.use(
-    response => {
+    response => {//每次得到回应时执行？
         // 如果返回的状态码为200，说明接口请求成功，可以正常拿到数据     
         // 否则的话抛出错误
         if (response.status === 200) {
@@ -31,9 +36,9 @@ axios.interceptors.response.use(
     // 这里可以跟你们的后台开发人员协商好统一的错误状态码    
     // 然后根据返回的状态码进行一些操作，例如登录过期提示，错误提示等等
     // 下面列举几个常见的操作，其他需求可自行扩展
-    error => {
-        console.log("error");
-        return false;
+    error => {//每次出错执行
+        console.log("onRejected-error：",error);
+        return error;
         if (error.response.status) {
             switch (error.response.status) {
                 case 401:// 401: 未登录 -跳转登录页面，并携带当前页面的路径 之后跳回？
@@ -69,29 +74,31 @@ axios.interceptors.response.use(
 
 export const ajax=(obj)=>{
     if(obj.url==="getToken"){
-        axios.get("auth/oauth/token",{
+        axios.post("/api/auth/oauth/token",{
             params:{
                 grant_type:"password",
                 username:obj.username,
                 password:obj.password,
                 scope:"all",loginFromType:1
             },
-            headers:{
-                Authorization:"Basic eGJyOmNvbS54Ynl="
-            }
         }).then((res)=>{
-            localStorage.setItem("access_token",res.data.access_token);
-            localStorage.setItem("token_type",res.data.token_type);
+            if(res){
+                console.log("myRequest:",res);
+                localStorage.setItem("access_token",res.data.access_token);
+                localStorage.setItem("token_type",res.data.token_type);
+                if(obj.success)obj.success(res);
+            }else{
+                if(obj.error)obj.error('false?');
+            }
         }).catch((err)=>{
             console.log(err);
         });
         return true;
     }
     if(!obj.url){console.log("ajax Err: url !");return false;}
-    if(!obj.success){console.log("ajax Warn:callback?");}
-    let _method=axios.get;
-    if(obj.type && obj.type==="post"){
-        _method=axios.post;
+    let _method=axios.post;
+    if(obj.type && obj.type==="get"){
+        _method=axios.get;
     }
     let tokenType=localStorage.getItem("token_type");
     let _config= {params:obj.data,headers:{
@@ -100,9 +107,9 @@ export const ajax=(obj)=>{
     };
     return _method(obj.url,_config).then((res)=>{
         //?
-        obj.success(res);
+        if(obj.success)obj.success(res);
     }).catch((err)=>{
         console.log(err);
-        obj.error(err);
+        if(obj.error)obj.error(err);
     });
 }

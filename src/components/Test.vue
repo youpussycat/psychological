@@ -4,7 +4,7 @@
 </template>
 
 <script>
-	import { ajax } from "../scripts/request/myRequire";
+	import { ajax } from "../scripts/request/myRequest";
 	export default {
 		// eslint-disable-next-line vue/multi-word-component-names
 		name: "Test",

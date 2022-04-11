@@ -85,9 +85,7 @@ export const ajax=(obj)=>{
     //     }).then((res)=>{
     //         if(res){
     //             console.log("myRequest:",res);
-    //             localStorage.setItem("access_token",res.data.access_token);
-    //             localStorage.setItem("token_type",res.data.token_type);
-    //             if(obj.success)obj.success(res);
+    // if(obj.success)obj.success(res);
     //         }else{
     //             if(obj.error)obj.error('false?');
     //         }

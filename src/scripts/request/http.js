@@ -64,10 +64,20 @@ axios.interceptors.response.use(
 );
 
 export const ajax=(obj)=>{
-    if(obj==="getToken"){
-        axios.get("auth/oauth/token").then((res)=>{
-        //?
-        })
+    if(obj.url==="getToken"){
+        axios.get("auth/oauth/token",{
+            params:{
+                grant_type:"password",
+                username:obj.username,
+                password:obj.password,
+                scope:"all",loginFromType:1
+            }
+        }).then((res)=>{
+            localStorage.setItem("access_token",res.data.access_token);
+            localStorage.setItem("token_type",res.data.token_type);
+        }).catch((err)=>{
+            console.log(err);
+        });
         return true;
     }
     if(!obj.url){console.log("ajax Err: url !");return false;}
@@ -76,16 +86,15 @@ export const ajax=(obj)=>{
     if(obj.type && obj.type==="post"){
         _method=axios.post;
     }
-    let tokenValue="";//XXX 获取token？ localStorage还是cookie
-    return _method(obj.url,{
-        params:obj.data,
-        headers:{tokenName:tokenValue}
-    }).then((res)=>{
+    let tokenType=localStorage.getItem("token_type");
+    let _config= {params:obj.data,headers:{}};
+    _config.headers[tokenType]=localStorage.getItem("access_token");
+
+    return _method(obj.url,_config).then((res)=>{
         //?
         obj.success(res);
     }).catch((err)=>{
         console.log(err);
         obj.error(err);
     });
-
 }

@@ -40,7 +40,6 @@ axios.interceptors.response.use(
     // 下面列举几个常见的操作，其他需求可自行扩展
     error => {//每次出错执行
         console.log("onRejected-error：",error);
-        return error;
         if (error.response.status) {
             switch (error.response.status) {
                 case 401:// 401: 未登录 -跳转登录页面，并携带当前页面的路径 之后跳回？
@@ -75,28 +74,28 @@ axios.interceptors.response.use(
 );
 
 export const ajax=(obj)=>{
-    if(obj.url==="getToken"){
-        axios.post("/api/auth/oauth/token",{
-            params:{
-                grant_type:"password",
-                username:obj.username,
-                password:obj.password,
-                scope:"all",loginFromType:1
-            },
-        }).then((res)=>{
-            if(res){
-                console.log("myRequest:",res);
-                localStorage.setItem("access_token",res.data.access_token);
-                localStorage.setItem("token_type",res.data.token_type);
-                if(obj.success)obj.success(res);
-            }else{
-                if(obj.error)obj.error('false?');
-            }
-        }).catch((err)=>{
-            console.log(err);
-        });
-        return true;
-    }
+    // if(obj.url==="getToken"){
+    //     axios.post("/api/auth/oauth/token",{
+    //         params:{
+    //             grant_type:"password",
+    //             username:obj.username,
+    //             password:obj.password,
+    //             scope:"all",loginFromType:1
+    //         },
+    //     }).then((res)=>{
+    //         if(res){
+    //             console.log("myRequest:",res);
+    //             localStorage.setItem("access_token",res.data.access_token);
+    //             localStorage.setItem("token_type",res.data.token_type);
+    //             if(obj.success)obj.success(res);
+    //         }else{
+    //             if(obj.error)obj.error('false?');
+    //         }
+    //     }).catch((err)=>{
+    //         console.log(err);
+    //     });
+    //     return true;
+    // }
     if(!obj.url){console.log("ajax Err: url !");return false;}
     let _method=axios.post;
     if(obj.type && obj.type==="get"){

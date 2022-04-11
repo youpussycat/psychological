@@ -80,14 +80,19 @@
                 console.log(index);//获取点击输入框的索引
             },
             button(self) {
+                let _self=this;
                 ajax({
-                    url:'getToken',
-                    account: self.content['account1'],
-                    password: self.content['password1'],
+                    url:'/api/auth/oauth/token',
+                    data:{
+                        grant_type:"password",
+                        username: self.content['account1'],
+                        password: self.content['password1'],
+                        scope:"all",loginFromType:1
+                    },
                     success:(response) => {
-                        this.info = response;
+                        _self.info = response;
                         console.log(response);
-                        this.judge(self);
+                        _self.judge(self);
                     }
                 });
             }

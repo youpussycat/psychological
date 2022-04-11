@@ -10,7 +10,7 @@ axios.interceptors.request.use(
         if(config.url.indexOf("/api")===0){//如果是进行后台请求
             const tokenHead = localStorage.getItem("token_type");
             const tokenBody = localStorage.getItem("access_token")
-            if("/api/auth/oauth/token"){//登陆url
+            if(config.url==="/api/auth/oauth/token"){//登陆url
                 config.headers.Authorization = "Basic eGJyOmNvbS54Ynl=";
             }else if(tokenHead && tokenBody){//如果存在
                 config.headers.authorization = `${tokenHead} ${tokenBody}`;

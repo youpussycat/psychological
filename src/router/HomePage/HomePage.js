@@ -1,19 +1,16 @@
 
 const ExampleCourses = ()=> import("../../components/HomePage/ExampleCourses");
 const IndexTrainingPro = () => import("../../components/HomePage/IndexTrainingPro")
-<<<<<<< HEAD
 const FamousTeacherStyle = () => import("../../components/HomePage/FamousTeacherStyle");
 const LegalNotices = () => import("../../components/HomePage/LegalNotices");
 const TrainingArounds = () => import("../../components/HomePage/TrainingArounds");
 const OnlineLearning = () => import("../../components/HomePage/OnlineLearning");
 const Page_Prompt = () => import("../../components/HomePage/Page_Prompt")
-
-=======
 const RightSidebar = () => import("../../components/HomePage/RightSidebar")
 const MenuBar = () => import("../../components/HomePage/MenuBar")
 const Footer = () => import("../../components/HomePage/Footer")
 const Button = () => import("../../components/HomePage/Button")
->>>>>>> 9417440ed0411652157b5157c7d03839273a1445
+
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path

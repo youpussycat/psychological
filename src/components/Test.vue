@@ -4,6 +4,7 @@
 </template>
 
 <script>
+	import { ajax } from "../scripts/request/myRequest";
 	export default {
 		// eslint-disable-next-line vue/multi-word-component-names
 		name: "Test",
@@ -15,12 +16,28 @@
 		},
 		methods:{
 			test:function(){
-				this.mes = "未获取";
+				let _self = this;
+				ajax({
+					url:"/api/admin/user/getUserInfo",
+					success:(res) => {
+						console.log("res.data:");
+						console.log(res.data);
+						_self.mes += res.data.data.userName + "   real:   " + res.data.data.realName;
+					},
+					error:(err) => {
+						console.log("Test err:");
+						console.log(err);
+
+						_self.mes = "未获取";
+					}
+				})
 			}
 		},
 		mounted() {
+			let _self = this;
 			this.$bus.on("验证",(data) => {
-				this.mes = data;
+				_self.mes = data;
+				console.log(_self.mes);
 			});
 		},
 		onUnmounted(){

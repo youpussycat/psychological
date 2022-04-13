@@ -70,7 +70,7 @@ axios.interceptors.response.use(
                     }, 1000);
                     break;
                 case 404:// 404 不存在
-                    console.log("页面不存在");
+                    console.log(error.config.url,"页面不存在");
                     break;
                 default:// 其他错误，直接抛出错误提示
                     console.log(error.response.data.message);

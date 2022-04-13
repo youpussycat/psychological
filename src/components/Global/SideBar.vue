@@ -16,8 +16,8 @@
         </div>
       </div>
       <div id="barList">
-        <div class="Bar" v-for="(_bar,_index) in SideBarList" :active="_index==nowIndex">
-          <a :href="_bar.href" class="BarText">{{_bar.name}}</a>
+        <div class="Bar" v-for="(_bar,_index) in SideBarList" :active="_index==nowIndex" :onclick="`location.href='${_bar.href}'`">
+          <p class="BarText">{{_bar.name}}</p>
         </div>
       </div>
     </div>
@@ -49,7 +49,10 @@
             {name:"意见反馈",href:"javascript:;"},
             {name:"举报监督",href:"javascript:;"},
         ],
-        nowIndex:3 //从0计数
+        nowIndex:3, //从0计数
+        locationHref(url){
+          window.location.href=url;
+        }
       };
     },
     methods: {
@@ -112,6 +115,9 @@
   .Bar{
     width: 205px;
     margin-left: 35px;
+  }
+  .Bar:hover p{
+    text-decoration: underline;
   }
   .Bar[active=true]{
     font-weight: bolder;

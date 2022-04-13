@@ -13,7 +13,6 @@
                     </a-menu>
                 </template>
             </a-breadcrumb-item>
-
         </a-breadcrumb>
     </div>
 
@@ -26,7 +25,7 @@
         name: "PageHeader",
         components:{
             ABreadcrumb: Breadcrumb,
-            ABreadcrumbItem: Breadcrumb.Item,
+            ABreadcrumbItem: Breadcrumb.Item,//a-breadcrumb-item
             AMenu: Menu,
             AMenuItem: Menu.Item,
         },
@@ -40,8 +39,8 @@
         methods: {
 
         },
-        mounted(){
-            this.breads.push({
+        mounted(){//组件渲染后会执行该函数
+            this.breads.push({//每一个类相当于一个面包屑，inner面包屑本身文字，menuItem二级菜单
                 inner:"首页",
                 menuItem:[
                 ],
@@ -50,22 +49,22 @@
                 menuItem:[
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"政策文件"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"协会文件"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"各地文件"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"其他"
                     },
                 ],
@@ -74,32 +73,32 @@
                 menuItem:[
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"培训公告"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"课程安排"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"成绩公告"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"考试公告"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"活动公告"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"其他"
                     },
                 ],
@@ -108,32 +107,32 @@
                 menuItem:[
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"项目介绍"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"课程安排"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"成绩公告"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"考试公告"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"活动公告"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"其他"
                     },
                 ],
@@ -158,17 +157,17 @@
                 menuItem:[
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"各地培训"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"新闻转载"
                     },
                     {
                         target:"",
-                        herf:"",
+                        href:"",
                         inner:"其他"
                     },
                 ],
@@ -186,20 +185,25 @@
         width: 100%;
         text-align: center;
     }
+
     .breads {
         margin-right: 54px;
     }
+
     .breaditem {
         font-size: 18px;
     }
+
     .menu {
         width: 100px;
         text-align: center;
     }
+
     .menuitem:hover,.menuitem {
         font-size: 16px;
         color: #222222;
     }
+
     .menuitem:hover {
         color: #04327A;
     }

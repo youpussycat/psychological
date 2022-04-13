@@ -39,7 +39,8 @@ import {_carousels} from "./Carousels";
 routes=routes.concat(_carousels);
 import {_homePage} from "./HomePage/HomePage";
 routes=routes.concat(_homePage);
-
+import {__systemSetting} from "@/router/BackOrganization/SystemSetting";
+routes=routes.concat(__systemSetting);
 export const router = createRouter({
 	history: createWebHashHistory(),
 	routes: routes

@@ -18,12 +18,18 @@ const BackGround = () => import("../../components/HomePage/BackGround")
 const HomePage_Login = () => import("../../components/HomePage/HomePage_Login")
 const HomePage_Register = () => import("../../components/HomePage/HomePage_Register")
 const Video_Details = () => import("../../components/HomePage/Video_Details")
+const ShowDetailsWithPictures = () => import("../../components/HomePage/ShowDetailsWithPictures");
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path
         path: PATH+'/ExampleCourses',
         name: 'ExampleCourses',
         component: ExampleCourses,
+    },
+    {
+        path: PATH + '/ShowDetailsWithPictures',
+        name: "ShowDetailsWithPictures",
+        component: ShowDetailsWithPictures,
     },
 
     {

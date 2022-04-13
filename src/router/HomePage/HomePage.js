@@ -14,6 +14,7 @@ const LegalNotices = () => import("../../components/HomePage/LegalNotices");
 const NoticeAndFileList = () => import("../../components/HomePage/NoticeAndFileList")
 const PageHeaderGroup = () => import("../../components/HomePage/PageHeaderGroup")
 const Teacher = () => import("../../components/HomePage/Teacher")
+const Video_Details = () => import("../../components/HomePage/Video_Details")
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path
@@ -92,6 +93,11 @@ let __homePage= [
         path:PATH+'/Teacher',
         name:'Teacher',
         component:Teacher
+    },
+    {
+        path:PATH+'/Video_Details',
+        name:'Video_Details',
+        component:Video_Details
     }
 
 ]

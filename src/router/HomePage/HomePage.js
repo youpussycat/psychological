@@ -1,29 +1,29 @@
 
 const ExampleCourses = ()=> import("../../components/HomePage/ExampleCourses");
 const IndexTrainingPro = () => import("../../components/HomePage/IndexTrainingPro")
-const FamousTeacherStyle = () => import("../../components/HomePage/FamousTeacherStyle");
-const LegalNotices = () => import("../../components/HomePage/LegalNotices");
-const TrainingArounds = () => import("../../components/HomePage/TrainingArounds");
-const OnlineLearning = () => import("../../components/HomePage/OnlineLearning");
-const Page_Prompt = () => import("../../components/HomePage/Page_Prompt")
 const RightSidebar = () => import("../../components/HomePage/RightSidebar")
 const MenuBar = () => import("../../components/HomePage/MenuBar")
 const Footer = () => import("../../components/HomePage/Footer")
 const Button = () => import("../../components/HomePage/Button")
 const Banner = () => import("../../components/HomePage/Banner")
+const FamousTeacherStyle = () => import("../../components/HomePage/FamousTeacherStyle");
+const TrainingArounds = () => import("../../components/HomePage/TrainingArounds");
+const OnlineLearning = () => import("../../components/HomePage/OnlineLearning");
+const Page_Prompt = () => import("../../components/HomePage/Page_Prompt")
+const LegalNotices = () => import("../../components/HomePage/LegalNotices");
+const NoticeAndFileList = () => import("../../components/HomePage/NoticeAndFileList")
+const PageHeaderGroup = () => import("../../components/HomePage/PageHeaderGroup")
 const Teacher = () => import("../../components/HomePage/Teacher")
-const PageHeaderGroup = () => import("../../components/HomePage/PageHeaderGroup");
+const BackGround = () => import("../../components/HomePage/BackGround")
+const HomePage_Login = () => import("../../components/HomePage/HomePage_Login")
+const HomePage_Register = () => import("../../components/HomePage/HomePage_Register")
+const Video_Details = () => import("../../components/HomePage/Video_Details")
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path
         path: PATH+'/ExampleCourses',
         name: 'ExampleCourses',
         component: ExampleCourses,
-    },
-    {
-        name: "PageHeaderGroup",
-        component: PageHeaderGroup,
-        path: PATH + '/PageHeaderGroup'
     },
 
     {
@@ -83,10 +83,40 @@ let __homePage= [
         component:Banner
     },
     {
-        path: PATH+'/Teacher',
+        path:PATH+'/NoticeAndFileList',
+        name:'NoticeAndFileList',
+        component:NoticeAndFileList
+    },
+    {
+        path:PATH+'/PageHeaderGroup',
+        name:'PageHeaderGroup',
+        component:PageHeaderGroup
+    },
+    {
+        path:PATH+'/Teacher',
         name:'Teacher',
         component:Teacher
     },
+    {
+        path:PATH+'/BackGround',
+        name:'BackGround',
+        component:BackGround
+    },
+    {
+        path: PATH+'/HomePage_Login',
+        name:'HomePage_Login',
+        component:HomePage_Login
+    },
+    {
+        path: PATH + '/HomePage_Register',
+        name: 'HomePage_Register',
+        component: HomePage_Register
+    },
+    {
+        path:PATH+'/Video_Details',
+        name:'Video_Details',
+        component:Video_Details
+    }
 ]
 import {_elegantTeachers} from "./ElegantTeachers";
  __homePage=__homePage.concat(_elegantTeachers);

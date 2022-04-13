@@ -14,9 +14,13 @@ const LegalNotices = () => import("../../components/HomePage/LegalNotices");
 const NoticeAndFileList = () => import("../../components/HomePage/NoticeAndFileList")
 const PageHeaderGroup = () => import("../../components/HomePage/PageHeaderGroup")
 const Teacher = () => import("../../components/HomePage/Teacher")
+<<<<<<< HEAD
 const BackGround = () => import("../../components/HomePage/BackGround")
 const HomePage_Login = () => import("../../components/HomePage/HomePage_Login")
 const HomePage_Register = () => import("../../components/HomePage/HomePage_Register")
+=======
+const Video_Details = () => import("../../components/HomePage/Video_Details")
+>>>>>>> 9f0239fe47f882f79b900e3e3eaf8c6fa7dc2c27
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path
@@ -97,6 +101,7 @@ let __homePage= [
         component:Teacher
     },
     {
+<<<<<<< HEAD
         path:PATH+'/BackGround',
         name:'BackGround',
         component:BackGround
@@ -110,6 +115,11 @@ let __homePage= [
         path: PATH+'/HomePage_Register',
         name:'HomePage_Register',
         component:HomePage_Register
+=======
+        path:PATH+'/Video_Details',
+        name:'Video_Details',
+        component:Video_Details
+>>>>>>> 9f0239fe47f882f79b900e3e3eaf8c6fa7dc2c27
     }
 ]
 import {_elegantTeachers} from "./ElegantTeachers";

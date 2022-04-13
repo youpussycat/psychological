@@ -14,6 +14,9 @@ const LegalNotices = () => import("../../components/HomePage/LegalNotices");
 const NoticeAndFileList = () => import("../../components/HomePage/NoticeAndFileList")
 const PageHeaderGroup = () => import("../../components/HomePage/PageHeaderGroup")
 const Teacher = () => import("../../components/HomePage/Teacher")
+const BackGround = () => import("../../components/HomePage/BackGround")
+const HomePage_Login = () => import("../../components/HomePage/HomePage_Login")
+const HomePage_Register = () => import("../../components/HomePage/HomePage_Register")
 let PATH="/HomePage"
 let __homePage= [
     {//规定名称为HelloWorld的组件的component、path
@@ -92,8 +95,22 @@ let __homePage= [
         path:PATH+'/Teacher',
         name:'Teacher',
         component:Teacher
+    },
+    {
+        path:PATH+'/BackGround',
+        name:'BackGround',
+        component:BackGround
+    },
+    {
+        path: PATH+'/HomePage_Login',
+        name:'HomePage_Login',
+        component:HomePage_Login
+    },
+    {
+        path: PATH+'/HomePage_Register',
+        name:'HomePage_Register',
+        component:HomePage_Register
     }
-
 ]
 import {_elegantTeachers} from "./ElegantTeachers";
  __homePage=__homePage.concat(_elegantTeachers);

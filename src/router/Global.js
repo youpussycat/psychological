@@ -4,6 +4,7 @@ const Banner = () => import("../components/Global/Banner");
 const Dialog = () => import("../components/Global/Dialog");
 const PageHeader = () => import("../components/Global/PageHeader");
 const NoticeList = () => import("../components/Global/NoticeList");
+const SubmitMessages = () => import("../components/Global/SubmitMessages")
 let PATH="/Global"
 export const _global= [
     {
@@ -20,6 +21,11 @@ export const _global= [
         path: PATH+'/PictureWall',
         name: 'PictureWall',
         component: PictureWall,
+    },
+    {
+        path: PATH+'/SubmitMessages',
+        name: 'SubmitMessages',
+        component: SubmitMessages,
     },
     {//规定名称为HelloWorld的组件的component、path
         path: PATH+'/PageHeader',

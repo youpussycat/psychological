@@ -17,7 +17,7 @@ const Teacher = () => import("../../components/HomePage/Teacher")
 const BackGround = () => import("../../components/HomePage/BackGround")
 const HomePage_Login = () => import("../../components/HomePage/HomePage_Login")
 const HomePage_Register = () => import("../../components/HomePage/HomePage_Register")
-const Video_Details = () => import("../../components/HomePage/Video_Details")
+const VideoDetails = () => import("../../components/HomePage/VideoDetails/VideoDetails")
 const ShowDetailsWithPictures = () => import("../../components/HomePage/ShowDetailsWithPictures");
 let PATH="/HomePage"
 let __homePage= [
@@ -119,9 +119,9 @@ let __homePage= [
         component: HomePage_Register
     },
     {
-        path:PATH+'/Video_Details',
-        name:'Video_Details',
-        component:Video_Details
+        path:PATH+'/VideoDetails/VideoDetails',
+        name:'VideoDetails',
+        component: VideoDetails
     }
 ]
 import {_elegantTeachers} from "./ElegantTeachers";

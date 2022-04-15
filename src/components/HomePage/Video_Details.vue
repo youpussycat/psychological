@@ -8,12 +8,13 @@
           <div v-else style="padding: 20px 20px 20px 20px">
             <div class="video_type">{{data.type1}}</div>
             <text>{{data.context}}</text>
+            <div style="padding-left: 30px; color: #777777">{{data.duration}}分钟</div>
           </div>
         </div>
       </div>
     </div>
     <div class="banner">
-      <div class="price">
+      <div class="price" style="padding-top: 15px;">
         <span>￥{{banner.price}}</span>
         <div class="button">
           <button>{{banner.button}}</button>
@@ -29,30 +30,34 @@
     <div>
       <div style="float: right; width: 350px; font-size: 16px; padding: 30px 30px 30px 30px;">
         {{course1.title}}
-        <div v-for="item in course1.data" style="padding: 10px 10px 10px 10px">
-          <img :src="item.img" alt="">
+        <div v-for="item in course1.data" style="padding: 10px 10px 10px 10px; height: 220px;">
+          <img :src="item.img" alt="" style="height: 180px;">
           <div>{{item.name}}</div>
           <div style="float: right; color: #FD1E1B">{{item.free}}</div>
-          <img :src="item.avatar" alt="" style="width: 20px">
-          主讲：{{item.teacher}}
+          <img :src="item.avatar" alt="" style="width: 20px;"/>
+          <text style="padding-bottom: 10px; font-size: 12px">主讲：{{item.teacher}}</text>
         </div>
       </div>
-      <div>
-        <span>{{course.title}}</span>
-        <span>{{course.title2}}</span>
+      <div style="padding: 20px 0 20px 0;">
+        <span style="font-weight: 800; font-size: 16px; border-bottom: 2px solid #043278; padding-bottom: 7px;">{{course.title}}</span>
+        <span style="color: #999999; font-size: 16px; padding-left: 50px;">{{course.title2}}</span>
       </div>
       <div>
         <input type="text" value="课程介绍" disabled>
       </div>
-      <div>
-        <div>{{course.title3}}</div>
-        <div v-for="item in course.data" style="width: 460px; float: left;">
-          <span>{{item.name}} {{item.props}}</span>
-          <span v-html="item.shortcoming"></span>
-        </div>
+      <div style="width: 460px; float: left;">
+        <img :src="course.img" alt="">
       </div>
       <div>
         <input type="text" value="目录" disabled>
+        <div v-for="data in course.context">
+          <div v-if="data.type==='title'" style="margin: 20px 20px 20px 20px; font-size: 16px; font-weight: 800;">{{data.context}}</div>
+          <div v-else style="padding: 20px 20px 20px 20px; font-size: 14px;">
+            <div>{{data.context}}</div>
+            <div style="float: left; padding-right: 10px; padding-top: 1px"><img src="../../assets/img/video.png" alt="" style="width: 18px"></div>
+            <div style="color: #777777">{{data.type1}} | 时长：{{data.duration}}分钟</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -62,9 +67,6 @@
 export default {
   name: "Video_Details",
   components: {
-  },
-  setup() {
-
   },
   data() {
     return {
@@ -79,12 +81,14 @@ export default {
         {
           type: "context",
           context: "心理健康咨询师是怎样炼成的",
-          type1: "录播"
+          type1: "录播",
+          duration: "18"
         },
         {
           type: "context",
           context: "心理健康咨询师是怎样炼成的",
-          type1: "录播"
+          type1: "录播",
+          duration: "18"
         },
         {
           type: "title",
@@ -93,7 +97,8 @@ export default {
         {
           type: "context",
           context: "心理健康咨询师是怎样炼成的",
-          type1: "录播"
+          type1: "录播",
+          duration: "18"
         },
       ],
       banner: {
@@ -107,31 +112,30 @@ export default {
       course: {
         title: "课程介绍",
         title2: "目录",
-        title3: "Web前端适合学习人群",
-        data: [
-          {
-            name: "在校大学生",
-            props: "提高性能与就业竞争力",
-            shortcoming: "缺乏工作经验和技能，<br>对未来没有明确的规划"
-          },
-          {
-            name: "提升技能",
-            props: "技能提升，多场景应用",
-            shortcoming: "已有队伍落伍，担心被淘汰"
-          },
-          {
-            name: "转行",
-            props: "突破转行，升职涨薪",
-            shortcoming: "职业瓶颈"
-          },
-          {
-            name: "技术爱好",
-            props: "前沿技术学习",
-            shortcoming: "对web前端技术感兴趣"
-          },
-        ],
+        img: require("../../assets/img/web.png"),
         context: [
-
+          {
+            type: "title",
+            context: "培训课程第一章",
+          },
+          {
+            type: "context",
+            context: "培训课程第一节",
+            type1: "录播",
+            duration: "18",
+          },
+          {
+            type: "context",
+            context: "培训课程第一节",
+            type1: "录播",
+            duration: "18",
+          },
+          {
+            type: "context",
+            context: "培训课程第一节",
+            type1: "录播",
+            duration: "18",
+          }
         ]
       },
       course1: {
@@ -170,10 +174,12 @@ export default {
   padding: 20px 300pt 20px 300pt;
 }
 video {
-  width: 67%;
+  width: 64%;
+  height: 489px;
 }
 .sidebar {
-  width: 33%;
+  width: 36%;
+  height: 489px;
   float: right;
   background: #141414;
   color: #b5b5b5;
@@ -223,5 +229,7 @@ button {
 input {
   width: 68%;
   border: none;
+  height: 50px;
+  font-size: 20px;
 }
 </style>

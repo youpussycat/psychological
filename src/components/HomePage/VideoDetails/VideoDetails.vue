@@ -259,7 +259,7 @@ video {
   font-size: 24pt;
   float: right;
   font-weight: 500;
-  width: 45%;
+  width: 580px;
 }
 button {
   width: 100%;

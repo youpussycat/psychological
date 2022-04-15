@@ -182,8 +182,11 @@
 
 <style scoped>
     .total {
-        width: 100%;
+        width: auto;
         text-align: center;
+        margin: auto;
+        left: 0;
+        right: 0;
     }
 
     .breads {

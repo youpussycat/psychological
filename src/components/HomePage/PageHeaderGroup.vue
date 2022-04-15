@@ -48,6 +48,7 @@
 		height: 70px;
 		background-color: #0A4A77;
 		width: 100%;
+		white-space: nowrap;
 		text-align: center;
 	}
 	.topest {

@@ -83,7 +83,7 @@
                 let _self=this;
                 ajax({
                     url:'/api/auth/oauth/token',
-                    data:{
+                    params:{
                         grant_type:"password",
                         username: self.content['account1'],
                         password: self.content['password1'],

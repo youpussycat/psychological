@@ -4,12 +4,12 @@ import {Router as router} from "vue-router";
 axios.defaults.timeout = 10000;
 axios.interceptors.request.use(
     config=>{//每次请求时 执行 config为ajax的obj
-        // 每次发送请求之前判断是否存在token        
+        // 每次发送请求之前判断是否存在token
         // 如果存在，则统一在http请求的header都加上token，这样后台根据token判断你的登录情况
         // 即使本地存在token，也有可能token是过期的，所以在响应拦截器中要对返回状态进行判断 
         if(config.url.indexOf("/api")===0){//如果是进行后台请求
             const tokenHead = localStorage.getItem("token_type");
-            const tokenBody = localStorage.getItem("access_token")
+            const tokenBody = localStorage.getItem("access_token");
             if(config.url==="/api/auth/oauth/token"){//登陆url
                 config.headers.Authorization = "Basic eGJyOmNvbS54Ynl=";
             }else if(tokenHead && tokenBody){//如果存在
@@ -106,12 +106,9 @@ export const ajax=(obj)=>{
     if(obj.type && obj.type==="get"){
         _method=axios.get;
     }
-    let tokenType=localStorage.getItem("token_type");
-    let _config= {params:obj.data,headers:{
-            authorization:tokenType+" "+localStorage.getItem("access_token")
-        }
-    };
-    return _method(obj.url,_config).then((res)=>{
+    let _config= {params:obj.data};
+    obj.params=obj.data;
+    return _method(obj).then((res)=>{
         //?
         if(obj.success)obj.success(res);
     }).catch((err)=>{

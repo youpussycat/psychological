@@ -212,11 +212,11 @@ export default {
   padding: 20px 300pt 20px 300pt;
 }
 video {
-  width: 64%;
+  width: 65%;
   height: 489px;
 }
 .sidebar {
-  width: 36%;
+  width: 35%;
   max-height: 489px;
   overflow-y: auto;
   float: right;

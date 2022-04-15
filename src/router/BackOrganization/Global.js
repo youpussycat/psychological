@@ -20,6 +20,7 @@ for (const i of ComponentAttribute)//遍历上面的组件数组，用于生成�
 		//import函数在webPack中无法只使用变量，只能字面量与常量结合使用或是只是用字面量,似乎插值语法也用不了.const是常变量
 		component: () => import("../../components/BackOrganization/Global/"+i)
 	});
+/*
 for (const i of SmallComponent)//遍历上面的组件数组，用于生成暴露组件所需要的属性
 	__global.push({
 		path: SmallRouterPath + i,
@@ -27,5 +28,5 @@ for (const i of SmallComponent)//遍历上面的组件数组，用于生成暴�
 		//import函数在webPack中无法只使用变量，只能字面量与常量结合使用或是只是用字面量,似乎插值语法也用不了.const是常变量
 		component: () => import("../../components/BackOrganization/Global/SmallComponents/"+i)
 	});
-
+*/
 

@@ -13,16 +13,22 @@
         </div>
         <div id="textAreaContext" style="font-size: 16px;">
             <p id="textTip">{{textTip}}</p>
-            <textarea v-model="textAreaChange"></textarea>
+            <textarea @keyup="textAreaChange"></textarea>
             <span id="placeHolder">{{textHolder}}</span>
-            <span id="textNow">{{textAreaChange.length}}</span><p id="textLimit">/500</p>
-            <span style="">*</span>
+            <span id="placeHolder_">*</span>
+            <span id="textNow">{{textCount}}</span><p id="textLimit">/500</p>
         </div>
         <div id="pictureContext">
-            <p id="pictureTip">{{pictureTip}}</p>
+            <p id="pictureHead">{{pictureHead}}</p>
             <picture-wall></picture-wall>
             <p style="font-size: 14px;color: #666">文件小于5M, 支持JPG/PNG/BMP等格式图片,最多可以上传5张图片</p>
         </div>
+        <div id="contact">
+            <p id="contactHead">{{contactHead}}</p>
+            <label for="contactInput"><input id="contactInput"></label>
+            <span id="contactHolder">{{contactHolder}}</span>
+        </div>
+        <button id="submit">{{submitText}}</button>
     </div>
 </template>
 
@@ -39,7 +45,10 @@
                 textTip:"填写您的建议:",
                 textHolder:"请填写具体内容帮助我们了解您的意见或建议",
                 textCount:0,
-                pictureTip:"上传相关照片:",
+                pictureHead:"上传相关照片:",
+                contactHead:"联系方式:",
+                contactHolder:"请留下您的真实联系方式(邮箱、QQ), 以便我们答疑解惑",
+                submitText:"提交",
             }
         },
         methods: {
@@ -51,11 +60,13 @@
                 _elem.dataset.active="true";
             },
             textAreaChange(ev){
-                console.log(ev)
-                if(this.content.length>400){
-                    this.content=String(this.content).slice(0,400)
+                let _elem=ev.target;
+                if(_elem.value.length>500){
+                    _elem.value.length=_elem.value.slice(0,500)
                 }
-                placeHolder.style.display="none";
+                this.textCount=_elem.value.length;
+                document.getElementById("placeHolder").style.display="none";
+                document.getElementById("placeHolder_").style.display="none";
             }
         },
         mounted(){
@@ -104,11 +115,16 @@
         width: 920px;
         height: 132px;
         position: relative;
+        margin-bottom: 33px;
     }
     textarea{
         width: 920px;
         height: 100px;
         resize: none;
+        background: #FAFAFA;
+        border: 1px solid #E9E9E9;
+        padding: 7px;
+        font-size: 14px;
     }
     #placeHolder{
         position: absolute;
@@ -116,6 +132,13 @@
         top:33px;
         font-size: 13px;
         color: #CCC;
+    }
+    #placeHolder_{
+        position: absolute;
+        left:15px;
+        top:33px;
+        font-size: 13px;
+        color: #CF0814;
     }
     #textLimit{
         position: absolute;
@@ -134,6 +157,41 @@
     #pictureContext{
         width: 920px;
         height: 180px;
+        margin-bottom: 30px;
+    }
+    #pictureHead{
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    #contact{
+        height: 79px;
+        width: 920px;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    #contactInput{
+        display: block;
+        background: #FAFAFA;
+        border: 1px solid #E9E9E9;
+        width: 508px;
+        height: 47px;
+        border-radius: 2px;
+        padding: 14px 14px 14px 15px;
+    }
+    #contactHolder{
+        position: absolute;
+        font-size: 14px;
+        color: #CCC;
+        top: 37px;
+        left: 15px;
+    }
+    #submit{
+        width: 120px;
+        height: 44px;
+        background: #084278;
+        border-radius: 2px;
+        color: white;
     }
     /*@import url("../../assets/vendor/css/bootstrap.min.css");*/
     /*@import url("../../assets/vendor/css/font-awesome.min.css");*/

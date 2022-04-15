@@ -26,15 +26,15 @@
 			<a-switch v-model:checked="switchChecked" />
 		</div>
 		<div class="characterChoose">
-			<a-button class="characterCancel">取消</a-button>
-			<a-button class="characterSure">确定</a-button>
+			<a-button class="characterCancel" >取消</a-button>
+			<a-button class="characterSure" @click="getAddCharacterData()">确定</a-button>
 		</div>
 	</div>
 
 </template>
 
 <script>
-	import TreeGroup from "@/components/BackOrganization/SystemSetting/TreeGroup";
+	import TreeGroup from "@/components/BackOrganization/SystemSetting/SmallComponents/TreeGroup";
 	import { Switch, Button } from 'ant-design-vue'
 	import {
 		CloseOutlined,
@@ -51,13 +51,14 @@
 		},
 		methods:{
 			getAddCharacterData(){
-				let a = {};
+				let a = this.$bus.emit("获取树节点");
 				let treeData = {...a};
 				return {
 					status: this.switchChecked,
 
 				}
-			}
+			},
+
 		},
 		setup() {
 			const switchChecked = ref(false);

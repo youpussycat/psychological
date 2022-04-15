@@ -1,8 +1,11 @@
 <template>
     <div id="sidebar">
-      <div v-for="data in msg" class="sidebartop" @click="data.click">
-        <div><img :src="data.src" style="width: 40px" alt=""></div>
-        <div>{{data.text}}</div>
+      <div v-for="data in msg" class="sidebartop" >
+          <a @click="data.click()">
+              <div ><img :src="data.src" style="width: 40px" alt=""></div>
+              <div>{{data.text}}</div>
+          </a>
+
       </div>
       <div class="service">
         <div><img src="../../assets/img/Customer.png" style="width: 40px" alt=""></div>
@@ -16,10 +19,11 @@ export default {
   name: "RightSidebar",
   methods: {
     get_image() {
-
+        console.log("get_image")
     }
   },
   data() {
+    let _self = this;
     return {
       msg: [
         {
@@ -40,7 +44,7 @@ export default {
         {
           src: require("../../assets/img/Wechat.png"),
           text: "公众号",
-          click: "get_image"
+          click: _self.get_image
         },
         {
           src: require("../../assets/img/App.png"),

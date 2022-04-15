@@ -1,41 +1,51 @@
 <template>
-  <div id="sidebar">
-    <div v-for="data in msg" class="container">
-      <div>
-        <div class="sidebar_img"><img :src="data.src" alt=""></div>
+    <div id="sidebar">
+      <div v-for="data in msg" class="sidebartop" @click="data.click">
+        <div><img :src="data.src" style="width: 40px" alt=""></div>
         <div>{{data.text}}</div>
       </div>
+      <div class="service">
+        <div><img src="../../assets/img/Customer.png" style="width: 40px" alt=""></div>
+        <div class="sidebar_text">人工客服</div>
+      </div>
     </div>
-    <div class="sidebar_img"><img src="../../assets/img/Customer.png" alt=""></div>
-    <div class="sidebar_text">人工客服</div>
-  </div>
 </template>
 
 <script>
 export default {
   name: "RightSidebar",
+  methods: {
+    get_image() {
+
+    }
+  },
   data() {
     return {
       msg: [
         {
           src: require("../../assets/img/Triangular.png"),
-          text: "课程安排"
+          text: "课程安排",
+          click: ""
         },
         {
           src: require("../../assets/img/Headset.png"),
-          text: "课程试听"
+          text: "课程试听",
+          click: ""
         },
         {
           src: require("../../assets/img/Message.png"),
-          text: "考试查询"
+          text: "考试查询",
+          click: ""
         },
         {
           src: require("../../assets/img/Wechat.png"),
-          text: "公众号"
+          text: "公众号",
+          click: "get_image"
         },
         {
           src: require("../../assets/img/App.png"),
-          text: "App下载"
+          text: "App下载",
+          click: ""
         }
       ],
     }
@@ -44,20 +54,26 @@ export default {
 </script>
 
 <style scoped>
-.sidebar_img {
-  width: 100px;
-  position: center;
-}
-.sidebar_text {
-  width: 15%;
-  font-size: 50px;
-  text-align: center;
-}
-.container {
-  width: 15%;
-  font-size: 50px;
-  text-align: center;
-  border-bottom: #807477 1px solid;
-  right: 0px;
-}
+  #sidebar {
+    float: right;
+    width: 68pt;
+    padding-right: 30px;
+    padding-top: 100px;
+  }
+  .sidebartop {
+    width: 100%;
+    background: #fdfdfe;
+    border-bottom: #807477 1px solid;
+    font-size: 8px;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  .service {
+    width: 100%;
+    font-size: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
 </style>

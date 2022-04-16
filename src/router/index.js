@@ -45,6 +45,8 @@ import {__backOrganization} from "@/router/BackOrganization/BackOrganization";
 routes=routes.concat(__backOrganization);
 import {__global} from "@/router/BackOrganization/Global";
 routes = routes.concat(__global);
+import {__websiteManagement} from "@/router/BackOrganization/WebsiteManagement";
+routes = routes.concat(__websiteManagement);
 export const router = createRouter({
 	history: createWebHashHistory(),
 	routes: routes

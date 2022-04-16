@@ -8,7 +8,9 @@
 const ComponentAttribute = [
     "ApplicationGuideManagement",
 ]
-const SmallComponent = []
+const SmallComponent = [
+    "Application"
+]
 const RouterPath = "/BackOrganization/WebsiteManagement/"
 const SmallRouterPath = "/BackOrganization/WebsiteManagement/SmallComponents/";
 

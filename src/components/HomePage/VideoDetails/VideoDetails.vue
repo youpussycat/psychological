@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div>
+    <div style="width: 1200px;">
       <video :src="video.src"></video>
       <div class="sidebar">
         <div v-for="data in video_data" style="font-size: 14px">
-          <div v-if="data.type==='title'" style="margin: 20px">{{data.context}}</div>
-          <div v-else style="padding: 20px" class="hover">
+          <div v-if="data.type==='title'" style="margin: 15px">{{data.context}}</div>
+          <div v-else style="padding: 10px" class="hover">
             <div class="video_type">{{data.type1}}</div>
             <text>{{data.context}}</text>
             <div class="duration">{{data.duration}}分钟</div>
@@ -13,7 +13,7 @@
         </div>
       </div>
     </div>
-    <div class="banner">
+    <div class="banner" style="margin-top: -4px">
       <div class="price" style="padding-top: 15px;">
         <span>￥{{banner.price}}</span>
         <div class="button">
@@ -27,48 +27,50 @@
         <span class="size1">授课教师：{{banner.teacher}}</span>
       </div>
     </div>
-    <div style="float: right; width: 350px; font-size: 16px; padding: 30px; background: #FFFFFF;">
-      {{course1.title}}
-      <div v-for="item in course1.data" style="padding: 10px; height: 220px;">
-        <img :src="item.img" alt="" style="height: 180px;">
+    <div style="float: right; width: 330px; font-size: 16px; padding: 30px; background: #FFFFFF; margin-top: 24px">
+      <div style="width: 290px; padding-left: 30px; padding-top: 10px; margin-bottom: -20px">{{course1.title}}</div>
+      <div v-for="item in course1.data" style="padding: 20px; height: 220px; width: 290px;">
+        <div class="link-top" style="margin-left: 0"></div>
+        <img :src="item.img" alt="" style="height: 164px; width: 290px; margin: 5px;">
         <div>{{item.name}}</div>
-        <div style="float: right; color: #FD1E1B">{{item.free}}</div>
-        <img :src="item.avatar" alt="" style="width: 20px;"/>
-        <text style="padding-bottom: 10px; font-size: 12px">主讲：{{item.teacher}}</text>
+        <div style="float: right; color: #FD1E1B; margin-top: 8px;">{{item.free}}</div>
+        <div style="margin: 5px;">
+          <img :src="item.avatar" alt="" style="width: 20px; height: 20px; margin-bottom: -5px; margin-right: 5px;"/>
+          <text style="padding-bottom: 10px; font-size: 12px">主讲：{{item.teacher}}</text>
+        </div>
       </div>
     </div>
-    <div style="background: #FFFFFF;">
-      <div style="padding: 20px 0 20px 0;">
-        <span style="font-weight: 800; font-size: 16px; border-bottom: 2px solid #043278; padding-bottom: 7px;">{{course.title}}</span>
-        <span style="color: #999999; font-size: 16px; padding-left: 50px;">{{course.title2}}</span>
+    <div style="background: #FFFFFF; width: 850px; margin-top: 24px;">
+      <div style="padding: 20px;">
+        <span @click="toggle1()" id="head1" style="font-weight: 800; font-size: 16px; border-bottom: 2px solid #043278; padding-bottom: 7px;">{{course.title}}</span>
+        <span @click="toggle2()" id="head2" style="color: #999999; font-size: 16px; margin-left: 50px; padding-bottom: 7px;">{{course.title2}}</span>
       </div>
-      <div>
+      <div id="introduction" style="width: 810px; display: block;">
         <input type="text" value=" 课程介绍" disabled>
+        <img :src="course.img" alt="" style="width: 798px;">
       </div>
-      <div style="width: 870px; float: left;">
-        <img :src="course.img" alt="">
-        <div>
-          <input type="text" value=" 目录" disabled>
-          <div v-for="data in course.context">
-            <div v-if="data.type==='title'" style="margin: 20px; font-size: 16px; font-weight: 800;">{{data.context}}</div>
-            <div v-else style="padding: 20px; font-size: 14px;">
-              <div v-if="data.flag===1" style="float: right">
-                <button style="background: #043278; font-size: 10px; width: 40px; height: 20px;">
-                  已观看
-                </button>
-              </div>
-              <div v-else style="float: right">
-                <button style="background: #F5F5F5; color: #999999; font-size: 10px; width: 40px; height: 20px;">
-                  未观看
-                </button>
-              </div>
-              <div>{{data.context}}</div>
-              <div style="float: left; padding-right: 10px; padding-top: 1px"><img src="../../../assets/img/video.png" alt="" style="width: 18px"></div>
-              <div style="color: #CCCCCC">{{data.type1}} | 时长：{{data.duration}}分钟</div>
+      <div id="catalogue" style="width: 810px; display: none">
+        <input type="text" value=" 目录" disabled>
+        <div v-for="data in course.context" style="margin-left: 10px">
+          <div v-if="data.type==='title'" style="margin: 10px; font-size: 16px; font-weight: 800;">{{data.context}}</div>
+          <div v-else style="margin: 10px; font-size: 14px;">
+            <div class="link-top"></div>
+            <div v-if="data.flag===1" style="float: right">
+              <button style="background: #043278; font-size: 10px; width: 40px; height: 20px;">
+                已观看
+              </button>
             </div>
+            <div v-else style="float: right">
+              <button style="background: #F5F5F5; color: #999999; font-size: 10px; width: 40px; height: 20px;">
+                未观看
+              </button>
+            </div>
+            <div style="margin: 8px;">{{data.context}}</div>
+            <div style="float: left; padding-right: 10px; padding-top: 1px; padding-left: 5px;"><img src="../../../assets/img/video.png" alt="" style="width: 18px"></div>
+            <div style="color: #CCCCCC">{{data.type1}} | 时长：{{data.duration}}分钟</div>
           </div>
-          <div style="text-align: center; padding-top: 60px; padding-bottom: 24px; color: #CCCCCC">已到底部</div>
         </div>
+        <div style="text-align: center; padding-top: 60px; padding-bottom: 24px; color: #CCCCCC; font-size: 12px;">已到底部</div>
       </div>
     </div>
   </div>
@@ -78,6 +80,28 @@
 export default {
   name: "VideoDetails",
   components: {
+  },
+  methods: {
+    toggle1() {
+      let a = document.getElementById("introduction");
+      let b = document.getElementById("catalogue");
+      let c = document.getElementById("head1");
+      let d = document.getElementById("head2");
+      a.style.display = "block";
+      b.style.display = "none";
+      d.style.color = "#999999"; d.style.fontWeight = 400; d.style.borderBottom = "none";
+      c.style.fontWeight = "800"; c.style.borderBottom = "2px solid #043278"; c.style.color = "#000001";
+    },
+    toggle2() {
+      let a = document.getElementById("introduction");
+      let b = document.getElementById("catalogue");
+      let c = document.getElementById("head1");
+      let d = document.getElementById("head2");
+      a.style.display = "none";
+      b.style.display = "block";
+      c.style.color = "#999999"; c.style.fontWeight = 400; c.style.borderBottom = "none";
+      d.style.fontWeight = "800"; d.style.borderBottom = "2px solid #043278"; d.style.color = "#000001";
+    }
   },
   data() {
     return {
@@ -180,21 +204,21 @@ export default {
         title: "热门课程",
         data: [
           {
-            img: require("../../../assets/img/logo.png"),
+            img: require("../../../assets/img/banner1.jpg"),
             name: "心理咨询师暑期集训营",
             teacher: "心博睿",
             free: "免费",
             avatar: require("../../../assets/img/logo.png"),
           },
           {
-            img: require("../../../assets/img/logo.png"),
+            img: require("../../../assets/img/banner1.jpg"),
             name: "心理咨询师暑期集训营",
             teacher: "心博睿",
             free: "免费",
             avatar: require("../../../assets/img/logo.png"),
           },
           {
-            img: require("../../../assets/img/logo.png"),
+            img: require("../../../assets/img/banner1.jpg"),
             name: "心理咨询师暑期集训营",
             teacher: "心博睿",
             free: "免费",
@@ -209,18 +233,18 @@ export default {
 
 <style scoped>
 .container {
-  padding: 20px 300pt 20px 300pt;
-  min-width: 1360px;
-  overflow: scroll;
+  /*padding: 20px 300pt 20px 300pt;*/
+  margin: 0 auto;
+  width: 1200px;
 }
 video {
   white-space: nowrap;
-  width: 880px;
+  width: 870px;
   height: 489px;
 }
 .sidebar {
   white-space: nowrap;
-  width: 455px;
+  width: 330px;
   max-height: 489px;
   overflow-y: auto;
   float: right;
@@ -229,7 +253,7 @@ video {
   font-size: 14pt;
 }
 .video_type {
-  margin: 5px 10px 10px 10px;
+  margin: 3px 10px 10px 10px;
   width: 30px;
   height: 17px;
   background: #6D6D6D;
@@ -238,10 +262,13 @@ video {
   float: left;
   text-align: center;
 }
-.video_type:hover {
+.hover:hover .video_type {
   background: #23b7fc;
 }
 .hover:hover {
+  color: #23b7fc;
+}
+.hover:hover .duration {
   color: #23b7fc;
 }
 .header {
@@ -270,7 +297,7 @@ button {
   height: 100%;
   background: #043278;
   font-size: 16pt;
-  border: none;
+  /*border: 1px solid #000000;*/
   color: #fafafc;
 }
 .button {
@@ -280,11 +307,13 @@ button {
   padding-right: 16pt;
 }
 input {
-  width: 870px;
+  width: 809px;
   border: none;
   height: 30px;
   font-size: 14px;
   color: #AAAAAA;
+  padding-left: 10px;
+  margin: 20px;
 }
 .banner {
   background: #ffffff;
@@ -293,8 +322,12 @@ input {
   padding-left: 30px;
   color: #777777;
   font-size: 12px;
+  padding-top: 5px;
 }
-.duration:hover {
-  color: #23b7fc;
+.link-top {
+  width: 100%;
+  height: 1px;
+  border-top: solid #F5F5F5 1px;
+  margin: 16px;
 }
 </style>

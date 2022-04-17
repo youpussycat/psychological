@@ -6,7 +6,8 @@
 const ComponentAttribute = [
 	"TopLogo",
 	"SideBar",
-	"Table"
+	"Table",
+	"Menu"
 ]
 const SmallComponent = [
 	"ceshi"

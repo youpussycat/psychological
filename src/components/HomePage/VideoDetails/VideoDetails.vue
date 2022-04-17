@@ -210,12 +210,16 @@ export default {
 <style scoped>
 .container {
   padding: 20px 300pt 20px 300pt;
+  min-width: 1360px;
+  overflow: scroll;
 }
 video {
+  white-space: nowrap;
   width: 880px;
   height: 489px;
 }
 .sidebar {
+  white-space: nowrap;
   width: 455px;
   max-height: 489px;
   overflow-y: auto;

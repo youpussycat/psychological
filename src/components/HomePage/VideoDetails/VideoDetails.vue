@@ -290,7 +290,7 @@ video {
   font-size: 24pt;
   float: right;
   font-weight: 500;
-  width: 580px;
+  width: 470px;
 }
 button {
   width: 100%;
@@ -301,8 +301,8 @@ button {
   color: #fafafc;
 }
 .button {
-  width: 292pt;
-  height: 50pt;
+  width: 292px;
+  height: 50px;
   float: right;
   padding-right: 16pt;
 }

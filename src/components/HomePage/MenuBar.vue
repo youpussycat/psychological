@@ -39,6 +39,6 @@ export default {
   nav .el-menu-item:hover {
     color: #123d80;
     background-color: darkgray;
-    height: 80px;
+
   }
 </style>

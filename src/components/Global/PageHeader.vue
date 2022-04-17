@@ -182,7 +182,7 @@
 
 <style scoped>
     .total {
-        width: auto;
+        width: fit-content;
         text-align: center;
         margin: auto;
         left: 0;

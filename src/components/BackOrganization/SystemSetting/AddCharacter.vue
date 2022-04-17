@@ -1,33 +1,35 @@
 <template>
-	<div class="addCharacter">
-		<div class="characterTop">
-			<div class="characterTitle">
-				新增角色
+	<div class="addCharacterTotal">
+		<div class="addCharacter">
+			<div class="characterTop">
+				<div class="characterTitle">
+					新增角色
+				</div>
+				<div class="characterX">
+					<close-outlined />
+				</div>
 			</div>
-			<div class="characterX">
-				<close-outlined />
+			<div class="characterName">
+				<span class="redMark">*</span>
+				<label class="promptWord" for="characterName">角色名称：</label>
+				<input type="text" placeholder="请输入角色名称" id="characterName">
 			</div>
-		</div>
-		<div class="characterName">
-			<span class="redMark">*</span>
-			<label class="promptWord" for="characterName">角色名称：</label>
-			<input type="text" placeholder="请输入角色名称" id="characterName">
-		</div>
-		<div class="characterAuthority">
-			<span class="redMark">*</span>
-			<a-tree-group></a-tree-group>
-		</div>
-		<div class="characterRemarks">
-			<label class="promptWord" for="remarks">备注：</label>
-			<input type="text" placeholder="请输入备注" id="remarks">
-		</div>
-		<div class="characterStatus">
-			<p class="promptWord">状态：</p>
-			<a-switch v-model:checked="switchChecked" />
-		</div>
-		<div class="characterChoose">
-			<a-button class="characterCancel" >取消</a-button>
-			<a-button class="characterSure" @click="getAddCharacterData()">确定</a-button>
+			<div class="characterAuthority">
+				<span class="redMark">*</span>
+				<a-tree-group></a-tree-group>
+			</div>
+			<div class="characterRemarks">
+				<label class="promptWord" for="remarks">备注：</label>
+				<input type="text" placeholder="请输入备注" id="remarks">
+			</div>
+			<div class="characterStatus">
+				<p class="promptWord">状态：</p>
+				<a-switch v-model:checked="switchChecked" />
+			</div>
+			<div class="characterChoose">
+				<a-button class="characterCancel" >取消</a-button>
+				<a-button class="characterSure" @click="getAddCharacterData()">确定</a-button>
+			</div>
 		</div>
 	</div>
 
@@ -71,6 +73,16 @@
 	}
 </script>
 <style scoped>
+	.addCharacterTotal {
+		position: absolute;
+		width: fit-content;
+		height: fit-content;
+		margin: auto;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+	}
 	.characterSure {
 		background: #bac1c8;
 		color: white;
@@ -83,10 +95,7 @@
 	.addCharacter {
 		width: 485px;
 		border: black 1px solid;
-		position: relative;
-		left: 400px;
-		top: 40px;
-		padding-bottom: 50px;
+		height: auto;
 	}
 	.characterTitle {
 		margin-bottom: 5px;
@@ -114,11 +123,10 @@
 		color: red;
 	}
 	.characterChoose {
-		position: absolute;
-		margin-bottom: 10px;
+		text-align: right;
+		margin-top: 50px;
 		margin-right: 10px;
-		bottom: 0;
-		right: 0;
+		margin-bottom: 10px;
 	}
 	.characterAuthority, .characterName {
 		padding-left: 25px;

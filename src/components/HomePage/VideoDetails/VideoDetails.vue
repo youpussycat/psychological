@@ -3,8 +3,11 @@
     <div style="width: 1200px;">
       <video :src="video.src"></video>
       <div class="sidebar">
-        <div v-for="data in video_data" style="font-size: 14px">
-          <div v-if="data.type==='title'" style="margin: 15px">{{data.context}}</div>
+        <div v-for="(data, index) in video_data" style="font-size: 14px">
+          <div v-if="data.type==='title'" style="margin: 15px">
+            <div v-if="index!==0" style="margin: 0; padding: 7px; border-top-color: #313131" class="link-top"></div>
+            {{data.context}}
+          </div>
           <div v-else style="padding: 10px" class="hover">
             <div class="video_type">{{data.type1}}</div>
             <text>{{data.context}}</text>
@@ -27,7 +30,7 @@
         <span class="size1">授课教师：{{banner.teacher}}</span>
       </div>
     </div>
-    <div style="float: right; width: 330px; font-size: 16px; padding: 30px; background: #FFFFFF; margin-top: 24px">
+    <div style="float: right; width: 330px; font-size: 16px; padding: 20px; background: #FFFFFF; margin-top: 24px">
       <div style="width: 290px; padding-left: 30px; padding-top: 10px; margin-bottom: -20px">{{course1.title}}</div>
       <div v-for="item in course1.data" style="padding: 20px; height: 220px; width: 290px;">
         <div class="link-top" style="margin-left: 0"></div>
@@ -41,7 +44,7 @@
       </div>
     </div>
     <div style="background: #FFFFFF; width: 850px; margin-top: 24px;">
-      <div style="padding: 20px;">
+      <div style="padding: 10px;">
         <span @click="toggle1()" id="head1" style="font-weight: 800; font-size: 16px; border-bottom: 2px solid #043278; padding-bottom: 7px;">{{course.title}}</span>
         <span @click="toggle2()" id="head2" style="color: #999999; font-size: 16px; margin-left: 50px; padding-bottom: 7px;">{{course.title2}}</span>
       </div>
@@ -112,6 +115,13 @@ export default {
         {
           type: "title",
           context: "第一章：心理健康咨询师大调查"
+        },
+        {
+          type: "context",
+          context: "心理健康咨询师是怎样炼成的",
+          type1: "录播",
+          duration: "18",
+          src: require("../../../assets/video/123.mp4"),
         },
         {
           type: "context",
@@ -233,7 +243,6 @@ export default {
 
 <style scoped>
 .container {
-  /*padding: 20px 300pt 20px 300pt;*/
   margin: 0 auto;
   width: 1200px;
 }
@@ -245,6 +254,7 @@ video {
 .sidebar {
   white-space: nowrap;
   width: 330px;
+  height: 489px;
   max-height: 489px;
   overflow-y: auto;
   float: right;
@@ -307,13 +317,13 @@ button {
   padding-right: 16pt;
 }
 input {
-  width: 809px;
+  width: 789px;
   border: none;
   height: 30px;
   font-size: 14px;
   color: #AAAAAA;
   padding-left: 10px;
-  margin: 20px;
+  margin: 20px 20px 20px 10px;
 }
 .banner {
   background: #ffffff;

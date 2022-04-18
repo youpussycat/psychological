@@ -7,6 +7,9 @@
 //你的组件数组以及路径
 const ComponentAttribute = [
     "ApplicationGuideManagement",
+    "TrainingDocumentaryManagement",
+    "NoticeAndAnnouncementManagement",
+    "DataDownloadManagement",
 ]
 const SmallComponent = [
     "ApplicationGuideTableAdd",

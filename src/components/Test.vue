@@ -30,7 +30,19 @@
 
 						_self.mes = "未获取";
 					}
-				})
+				});
+				ajax({
+					url:"/api/admin/role/getList",
+					success:(res) => {
+						console.log(res.data.data)
+					},
+					error:(err) => {
+						console.log("Test err:");
+						console.log(err);
+
+						_self.mes = "未获取";
+					}
+				});
 			}
 		},
 		mounted() {

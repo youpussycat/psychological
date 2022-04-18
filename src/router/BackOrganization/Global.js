@@ -10,7 +10,7 @@ const ComponentAttribute = [
 	"Menu"
 ]
 const SmallComponent = [
-	"ceshi"
+	"MenuItem"
 ]
 const RouterPath = "/BackOrganization/Global/"
 const SmallRouterPath = "/BackOrganization/Global/SmallComponents/";

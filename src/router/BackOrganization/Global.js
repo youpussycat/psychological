@@ -9,7 +9,8 @@ const ComponentAttribute = [
 	"Table",
 	"SearchBar",
 	"myMenu",
-	"MyPosition"
+	"MyPosition",
+	"TotalShow"
 ]
 const SmallComponent = [
 	"myMenuItem"

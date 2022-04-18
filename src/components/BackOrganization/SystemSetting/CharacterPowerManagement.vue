@@ -18,6 +18,7 @@
 	import MyPosition from "@/components/BackOrganization/Global/MyPosition";
 	import Table from "@/components/BackOrganization/Global/Table";
 	import MyMenu from "@/components/BackOrganization/Global/myMenu";
+	import SearchBar from "@/components/BackOrganization/Global/SearchBar";
 	export default {
 		name: "CharacterPowerManagement",
 		components: {
@@ -26,6 +27,8 @@
 			MyPosition,
 			Table,
 			TopLogo,
+			SearchBar,
+
 		},
 		methods: {
 

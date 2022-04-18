@@ -171,6 +171,7 @@
 				res = this.$options.methods.mySearch(item[i].children,this,1,dtas.keyPath,res);
 				console.log(res);
 				this.$bus.emit("改变我的位置",res);
+				this.$bus.emit("返回Menu的选中key",dtas.keyPath[dtas.keyPath.length - 1]);
 			},
 
 		},

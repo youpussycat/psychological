@@ -13,6 +13,7 @@ const SmallComponent = [
     "FamousTeacherStyleTableAdd",
     "TrainingDocumentaryTableAdd",
     "NoticeAndAnnouncementTableAdd",
+    "DataDownloadTableAdd",
 ]
 const RouterPath = "/BackOrganization/WebsiteManagement/"
 const SmallRouterPath = "/BackOrganization/WebsiteManagement/SmallComponents/";

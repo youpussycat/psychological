@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="myMenu">
 		<a-menu
 				v-model:openKeys="openKeys"
 				v-model:selectedKeys="selectedKeys"
@@ -188,8 +188,18 @@
 				(data)=>{
 					_self.dta = data;
 					_self.openKeys = [..._self.openAll(_self.dta)];
-				})
+				});
+			this.$bus.on("页面中改变我的位置",
+				(data)=>{
+					this.selectedKeys=[data.key];
+					this.changeMyPosition(data);//需要提供keyPath
+				});
 		}
 
 	}
 </script>
+<style scoped>
+	.myMenu {
+		width: 100%;
+	}
+</style>

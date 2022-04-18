@@ -7,6 +7,7 @@
 		<div class="PositionMark">
 			<MyPosition></MyPosition>
 		</div>
+
 	</div>
 
 
@@ -19,7 +20,7 @@
 	import Table from "@/components/BackOrganization/Global/Table";
 	import MyMenu from "@/components/BackOrganization/Global/myMenu";
 	export default {
-		name: "CharacterPowerManagement",
+		name: "TotalShow",
 		components: {
 			MyMenu,
 			myMenuItem,

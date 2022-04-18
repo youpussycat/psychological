@@ -42,6 +42,15 @@
 </script>
 
 <style scoped>
+	.TopLogoTotal {
+		background-color: white;
+		position: sticky;
+		top: 0;
+		left: 0;
+		z-index: 1000;
+		width: 100%;
+		height: 60px;
+	}
 	.TopLogoImg, .TopLogoTitle, .TopLogoLeft, .TopLogoRight, .MessNotice, .User {
 		display: inline-block;
 	}

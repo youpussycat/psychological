@@ -42,12 +42,12 @@
 
 <style scoped>
 	.TopLogoBottom {
-		display: flex;
+		display: flex;/*创建flex项目，方便分配剩余空间*/
 	}
 	.mymenu {
 
 	}
 	.PositionMark {
-		flex-grow: 1;
+		flex-grow: 1;/*自动占满剩余空间*/
 	}
 </style>

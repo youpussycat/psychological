@@ -136,6 +136,8 @@
 				}
 			},
 			mySearch: function(dta,_self,index,keyPath,res=""){
+				if(!dta)
+					return res;
 				for(let it of dta) {
 					if (it.key === keyPath[index]) {
 						res += " > " + it.text;

@@ -99,7 +99,7 @@ function getBase64(img, callback) {
   reader.readAsDataURL(img);
 }
 export default defineComponent ({
-  name: "TrainingDocumentaryManagementAdd",
+  name: "TrainingDocumentaryTableAdd",
   components:{
     AUpload: Upload,
     LoadingOutlined,

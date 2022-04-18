@@ -11,7 +11,8 @@ const ComponentAttribute = [
 const SmallComponent = [
     "ApplicationGuideTableAdd",
     "FamousTeacherStyleTableAdd",
-    "TrainingDocumentaryManagementAdd",
+    "TrainingDocumentaryTableAdd",
+    "NoticeAndAnnouncementTableAdd",
 ]
 const RouterPath = "/BackOrganization/WebsiteManagement/"
 const SmallRouterPath = "/BackOrganization/WebsiteManagement/SmallComponents/";

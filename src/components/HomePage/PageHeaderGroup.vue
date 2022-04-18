@@ -1,12 +1,10 @@
 <template>
 	<div class="total">
-		<div class="topest">
 			<p class="desMes">中小学心理健康教育指导教师培训网&nbsp&nbsp欢迎您！</p>
 			<div class="headerButton">
 				<a-button size="small" type="primary" class="login"><span class="loginMes">登录</span></a-button>
 				<a-button size="small" class="register"><span class="resMes">注册</span></a-button>
 			</div>
-		</div>
 
 		<div class="logos">
 			<div class="leftLogo">
@@ -22,9 +20,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="header">
-		<a-page-header></a-page-header>
+	<div class="headerTotal">
+		<div class="header">
+			<a-page-header></a-page-header>
+		</div>
 	</div>
+
 
 </template>
 
@@ -42,13 +43,20 @@
 </script>
 
 <style scoped>
-	.header {
+	.headerTotal {
 		position: absolute;
 		top: 130px;
 		height: 70px;
 		background-color: #0A4A77;
 		width: 100%;
 		text-align: center;
+	}
+	.header {
+		height: 70px;
+		background-color: #0A4A77;
+		width: fit-content;
+		white-space: nowrap;
+		margin: auto;
 	}
 	.topest {
 		background-color: #F0F3F8;
@@ -57,8 +65,10 @@
 		float: right;
 		display: inline-block;
 		height: 24px;
-		position: relative;
+		position: fixed;
 		top: 5px;
+		right: 0;
+		margin-left: auto;
 	}
 	.desMes {
 		font-size: 14px;
@@ -66,9 +76,12 @@
 		color: #043278;
 		opacity: 1;
 		display: inline-block;
-		position: relative;
-		top: 5px;
+		position: fixed;
+		margin-top: 5px;
+		left: 0;
+		margin-right: auto;
 
+		white-space: nowrap;
 	}
 
 	.login {
@@ -84,6 +97,9 @@
 	}
 	.leftLogo{
 		float:left;
+	}
+	.leftLogo, .rightLogo {
+		margin-top: 30px;
 	}
 	.rightLogo {
 		float: right;

@@ -101,7 +101,8 @@
 				columns: [{
 					title: 'Name',
 					dataIndex: 'name',
-					dataClass: 'buttons'
+					dataClass: 'buttons',
+					width:30
 				}, {
 					title: 'Cash Assets',
 					className: 'column-money',

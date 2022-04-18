@@ -3,11 +3,15 @@
 // /BackOrganization/SystemSetting/你的组件名称
 // /BackOrganization/SystemSetting/SmallComponents/你的组件名称
 
+import CharacterPowerManagement from "@/components/BackOrganization/SystemSetting/CharacterPowerManagement";
+
 const ComponentAttribute = [
-		"AddCharacter",
+	"CharacterPowerManagement",
+
 	]
 const SmallComponent = [
 	"TreeGroup",
+	"AddCharacter",
 ]
 const RouterPath = "/BackOrganization/SystemSetting/"
 const SmallRouterPath = "/BackOrganization/SystemSetting/SmallComponents/";

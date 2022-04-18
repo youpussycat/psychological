@@ -7,11 +7,12 @@ const ComponentAttribute = [
 	"TopLogo",
 	"SideBar",
 	"Table",
-	"Menu",
-	"SearchBar"
+	"SearchBar",
+	"myMenu",
+	"MyPosition"
 ]
 const SmallComponent = [
-	"ceshi"
+	"myMenuItem"
 ]
 const RouterPath = "/BackOrganization/Global/"
 const SmallRouterPath = "/BackOrganization/Global/SmallComponents/";

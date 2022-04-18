@@ -4,13 +4,23 @@
             <span class="SearchText" :style="`
                 margin-left:${_label.left}px;
                 margin-right:${_label.segment}px;
-            `">{{_label.name}}</span>
+            `">{{_label.tip}}</span>
             <label class="SearchInput" :style="`
-                width:${_label.input.width ? _label.input.width+'px' : 'auto'}
-            `"><input></label>
+                width:${_label.input.width ? _label.input.width+'px' : 'auto'};
+                ${_label.input.type=='select' ? 'border:0;background:#0000':''};
+            `">
+
+                <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='text'"
+                        :placeholder="_label.input.value"
+                >
+                <select :name="_label.name" v-if="_label.input.type=='select'">
+                    <option v-for="_opt in _label.input.value">{{_opt}}</option>
+                </select>
+            </label>
         </div>
-        <button id="searchBtn" class="SubmitButton" :style="`margin-left:${buttonLeft}px;`">查询</button>
-        <button id="resetBtn" class="SubmitButton">重置{{}}</button>
+        <button id="searchBtn" class="SubmitButton" @click="searchButton"
+                :style="`margin-left:${buttonLeft}px;`">查询</button>
+        <button id="resetBtn" class="SubmitButton">重置</button>
     </div>
 </template>
 
@@ -19,10 +29,12 @@
         name: 'SearchBar',
         methods:{
             searchButton(){
-                console.log("emit 搜索");
-                this.$bus.emit("搜索",{
-                    data:"?",
-                });
+                let _data={},inputList=document.querySelectorAll("input[name],select[name]");
+                for(let _input of inputList){
+                    _data[_input.name]=_input.value;
+                }
+                console.log("emit 搜索",_data);
+                this.$bus.emit("搜索",_data);
             },
             loadLabel(_event,_label){
                 let _elem=_event.target;
@@ -34,18 +46,18 @@
                 labelList:[
                     {
                         left:0,segment:14,
-                        name:"所属页面",
-                        input:{type:"selector",value:[
+                        name:"belongTo",tip:"所属页面",
+                        input:{type:"select",value:[
                             "首页","政策文件","通知公告","报考指南","师资风采","培训纪实","下载中心",
                         ]}
                     },{
                         left:79,segment:25,
-                        name:"图片名称",
-                        input:{type:"text",value:"单行输入"}
+                        name:"imgName",tip:"图片名称",
+                        input:{value:"单行输入"}//默认type:"text",
                     },{
                         left:122,segment:8,
-                        name:"状态",
-                        input:{type:"selector",value:["启用","禁用"],width:91}
+                        name:"status",tip:"状态",
+                        input:{type:"select",value:["启用","禁用"],width:91}
                     }
                 ],
                 buttonLeft:93,
@@ -64,16 +76,19 @@
     }
     .SearchUnit{
         display: inline;
-        position: relative;
-        top: 35px;
         height: 30px;
     }
     .SearchText{
         font-size: 14px;
+        display: inline;
     }
     .SearchInput{
         height: 30px;
         border: 1px solid rgba(187, 187, 187, 100);
+        color: #888;
+        padding-left: 6px;
+        background: #FFF;
+        display: inline-block;
     }
 
 
@@ -84,6 +99,7 @@
         text-align: center;
         font-size: 14px;
         line-height: 20px;
+        margin-top: 30px;
     }
     #searchBtn{
         color: rgba(255, 255, 255, 100);
@@ -101,6 +117,13 @@
         border: 0;
         background: transparent;
         outline: transparent;
-        width: inherit;
+        width: inherit;height: inherit;
+        display: inline;
     }
+    select{
+        height: inherit;
+    }
+    button:hover {opacity: 0.8;outline: none;}
+    button       {opacity: 1;  outline: none;}
+    button:active{opacity: 0.5;outline: none;}
 </style>

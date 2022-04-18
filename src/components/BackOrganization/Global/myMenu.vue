@@ -10,8 +10,6 @@
 				@select="changeMyPosition"
 		>
 			<my-menu-item :data="it"></my-menu-item>
-
-
 		</a-menu>
 	</div>
 </template>
@@ -40,38 +38,90 @@
 				res: [],
 				dta: [
 					{
-						key: "1",
-						text: "第1级",
+						key:"1",
+						text:"工作台",
 						img: {
-							src: require("../../../assets/img/logo.png"),
-						},
-						children: [{
-							key: "1-1",
-							text: "第1-1级",
-							children: [{
-								key: "1-1-1",
-								text: "第1-1-1级",
-								img: {
-									src: require("../../../assets/img/logo.png"),
-								}
-							}]
-						}]
-
+							src:require("../../../assets/img/logo.png"),
+						}
 					},
 					{
-						key: "2",
-						text: "第2级",
-						children: [{
-							key: "2-1",
-							text: "第2-1级",
-							children: [{
-								key: "2-1-1",
-								text: "第2-1-1级",
+						key:"2",
+						text:"网站管理",
+						img: {
+							src:require("../../../assets/img/logo.png"),
+						},
+						children: [
+							{
+								key:"2-1",
+								text:"banner管理",
 							},
-							]
-						}]
-
+							{
+								key:"2-2",
+								text:"政策文件管理",
+							},
+							{
+								key:"2-3",
+								text:"报考指南管理",
+							},
+							{
+								key:"2-4",
+								text:"通知公告管理",
+							},
+							{
+								key:"2-5",
+								text:"名师风采管理",
+							},
+							{
+								key:"2-6",
+								text:"培训纪实管理",
+							},
+							{
+								key:"2-7",
+								text:"下载中心管理",
+							},
+							{
+								key:"2-8",
+								text:"网站信息设置",
+							},
+							{
+								key:"2-9",
+								text:"意见反馈管理",
+							},
+						]
 					},
+					{
+						key:"3",
+						text:"学员管理",
+						img: {
+							src:require("../../../assets/img/logo.png"),
+						}
+					},
+					{
+						key:"4",
+						text:"系统设置",
+						img: {
+							src:require("../../../assets/img/logo.png"),
+						},
+						children: [
+							{
+								key:"4-1",
+								text:"企业信息",
+							},
+							{
+								key:"4-2",
+								text:"账号管理",
+							},
+							{
+								key:"4-3",
+								text:"角色权限管理",
+							},
+							{
+								key:"4-4",
+								text:"操作日志",
+							}
+						]
+					},
+
 				]
 			};
 		},
@@ -119,7 +169,8 @@
 				res = this.$options.methods.mySearch(item[i].children,this,1,dtas.keyPath,res);
 				console.log(res);
 				this.$bus.emit("改变我的位置",res);
-			}
+			},
+
 		},
 		setup() {
 
@@ -133,9 +184,10 @@
 		mounted() {
 			this.openKeys = [...this.openAll(this.dta)];
 			let _self = this;
-			this.$bus.on("后端界面Menu数据传输",
+			this.$bus.on("改变Menu数据",
 				(data)=>{
 					_self.dta = data;
+					_self.openKeys = [..._self.openAll(_self.dta)];
 				})
 		}
 

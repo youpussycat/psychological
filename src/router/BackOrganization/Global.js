@@ -7,7 +7,10 @@ const ComponentAttribute = [
 	"TopLogo",
 	"SideBar",
 	"Table",
-	"Menu"
+	"Menu",
+	"Dialog",
+	"Test",
+	"Bubble"
 ]
 const SmallComponent = [
 	"MenuItem"

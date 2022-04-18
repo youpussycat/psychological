@@ -105,7 +105,7 @@ export default defineComponent({
 .add{
   position: absolute;
   box-sizing: border-box;
-  left: 1215px;
+  right: 0;
   width: 705px;
   height: 1080px;
   border: 1px solid rgba(187, 187, 187, 100);

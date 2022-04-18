@@ -31,10 +31,10 @@
       </div>
     </div>
     <div style="float: right; width: 330px; font-size: 16px; padding: 20px; background: #FFFFFF; margin-top: 24px">
-      <div style="width: 290px; padding-left: 30px; padding-top: 10px; margin-bottom: -20px">{{course1.title}}</div>
+      <div style="width: 290px; padding-left: 30px; margin-bottom: -20px">{{course1.title}}</div>
       <div v-for="item in course1.data" style="padding: 20px; height: 220px; width: 290px;">
         <div class="link-top" style="margin-left: 0"></div>
-        <img :src="item.img" alt="" style="height: 164px; width: 290px; margin: 5px;">
+        <img :src="item.img" alt="" style="height: 164px; width: 290px; margin: 10px;">
         <div>{{item.name}}</div>
         <div style="float: right; color: #FD1E1B; margin-top: 8px;">{{item.free}}</div>
         <div style="margin: 5px;">

@@ -1,14 +1,14 @@
 <template>
-	<a-sub-menu v-if="data.children" :key="data.key">
-
+	<a-sub-menu v-if="data.children && data.children.length" :key="data.key">
 		<template #title>
 			<img v-if="data.img" class="ItemBeforeImg" alt="图片" :src="data.img.src"/>
 			{{data.text}}
 		</template>
-		<my-menu-item :data="data.children"></my-menu-item>
+		<template v-for="it in data.children">
+			<my-menu-item :data="it"></my-menu-item>
+		</template>
 	</a-sub-menu>
 	<a-menu-item v-else :key="data.key">
-
 		<span>
 			<img v-if="data.img" class="ItemBeforeImg" alt="图片" :src="data.img.src"/>
 			{{data.text}}

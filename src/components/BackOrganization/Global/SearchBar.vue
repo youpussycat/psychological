@@ -44,7 +44,14 @@
         data () {
             return {
                 labelList:[
+                    //left为数据项的左侧宽度，segment为文字与输入框间的距离
+                    //buttonLeft是数据项与搜索按钮的距离
+                    //input的type有select和text，text可默认不写
+                    //value为默认值或选项，为选项时数据类型为字符串数组，默认选项为选项值的第一个
+                    //tip为input前面文字说明。
+                    //input内部的width为input的宽度
                     {
+
                         left:0,segment:14,
                         name:"belongTo",tip:"所属页面",
                         input:{type:"select",value:[

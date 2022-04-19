@@ -1,4 +1,7 @@
 <template>
+	<div class="myBubble">
+		<my-bubble></my-bubble>
+	</div>
 	<TopLogo></TopLogo>
 	<div class="TopLogoBottom">
 		<div class="mymenu">
@@ -23,6 +26,7 @@
 	import TopLogo from "@/components/BackOrganization/Global/TopLogo";
 	import MyPosition from "@/components/BackOrganization/Global/MyPosition";
 	import Table from "@/components/BackOrganization/Global/myTable";
+	import Bubble from "@/components/BackOrganization/Global/Bubble";
 	import MyMenu from "@/components/BackOrganization/Global/myMenu";
 	import CharacterPowerManagement from "@/components/BackOrganization/SystemSetting/CharacterPowerManagement";
 	export default {
@@ -34,6 +38,8 @@
 			Table,
 			TopLogo,
 			CharacterPowerManagement,
+			MyBubble: Bubble,
+
 		},
 		methods: {
 

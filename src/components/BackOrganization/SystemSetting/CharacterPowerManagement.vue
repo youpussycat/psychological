@@ -1,4 +1,7 @@
 <template>
+	<div class="SearchMenu">
+		<SearchBar></SearchBar>
+	</div>
 	<div class="myTableInCharacterMan">
 		<my-table></my-table>
 	</div>
@@ -9,18 +12,59 @@
 <script>
 	import myTable from "@/components/BackOrganization/Global/myTable";
 	import SearchBar from "@/components/BackOrganization/Global/SearchBar";
+	import Bubble from "@/components/BackOrganization/Global/Bubble";
 	export default {
 		name: "CharacterPowerManagement",
 		components: {
 			SearchBar,
 			MyTable: myTable,
+			MyBubble: Bubble,
+
+
 		},
 		methods: {
+			butnProduction: function(ll){
+				let _self = ll;
+				return [
+					{
+						text: "编辑",
+						cont: _self.keyCont,
+						click: function(){
+							console.log(_self.tableDta[this.cont])
+						}
+					},
+					{
+						text: "禁用",
+						cont: _self.keyCont,
+						click: function(){
+							console.log(_self.tableDta[this.cont])
+						}
+					},
+					{
+						text: "删除",
+						cont: _self.keyCont,
+						click: function(){
+							console.log(_self.tableDta[this.cont]);
 
+							_self.tableDta.splice(this.cont,1)
+						}
+					}
+				];
+			},
+			setTableDta: function(dta) {
+				this.tableDta=[];
+				for(let i of dta){
+					i["buttons"] = this.$options.methods.butnProduction(this);
+					this.tableDta.push(i);
+				}
+			}
 		},
+
 		data() {
 			return {
-
+				name: "本vue的dta",
+				tableDta: [],
+				keyCont: 0,
 			};
 		},
 		mounted() {
@@ -63,6 +107,8 @@
 					align: 'center',
 				},
 			]
+			let _self = this;
+
 			let dta = [
 				{
 					key: '1',
@@ -70,112 +116,15 @@
 					name: "李狗蛋",
 					remarks: "别名 李靖",
 					status: "重伤",
-					buttons: [
-						{
-							text: "疗伤",
-							click: ()=>console.log("我在疗伤")
-						},
-						{
-							text: "战斗",
-							click: ()=>console.log("我tm负伤战斗！")
-						},
-						{
-							text: "摆烂",
-							click: ()=>console.log("我无救了，摆烂吧")
-						},
-					]
 				},
-				{
-					key: '2',
-					index: 2,
-					name: "李狗蛋",
-					remarks: "别名 李靖",
-					status: "重伤",
-					buttons: [
-						{
-							text: "疗伤",
-							click: ()=>console.log("我在疗伤")
-						},
-						{
-							text: "战斗",
-							click: ()=>console.log("我tm负伤战斗！")
-						},
-						{
-							text: "摆烂",
-							click: ()=>console.log("我无救了，摆烂吧")
-						},
-					]
-				},
-				{
-					key: '3',
-					index: 3,
-					name: "李狗蛋",
-					remarks: "别名 李靖",
-					status: "重伤",
-					buttons: [
-						{
-							text: "疗伤",
-							click: ()=>console.log("我在疗伤")
-						},
-						{
-							text: "战斗",
-							click: ()=>console.log("我tm负伤战斗！")
-						},
-						{
-							text: "摆烂",
-							click: ()=>console.log("我无救了，摆烂吧")
-						},
-					]
-				},
-				{
-					key: '4',
-					index: 4,
-					name: "李狗蛋",
-					remarks: "别名 李靖",
-					status: "重伤",
-					buttons: [
-						{
-							text: "疗伤",
-							click: ()=>console.log("我在疗伤")
-						},
-						{
-							text: "战斗",
-							click: ()=>console.log("我tm负伤战斗！")
-						},
-						{
-							text: "摆烂",
-							click: ()=>console.log("我无救了，摆烂吧")
-						},
-					]
-				},
-				{
-					key: '5',
-					index: 5,
-					name: "李狗蛋",
-					remarks: "别名 李靖77777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777777",
-					status: "重伤",
-					buttons: [
-						{
-							text: "疗伤",
-							click: ()=>console.log("我在疗伤")
-						},
-						{
-							text: "战斗",
-							click: ()=>console.log("我tm负伤战斗！")
-						},
-						{
-							text: "摆烂",
-							click: ()=>console.log("我无救了，摆烂吧")
-						},
-					]
-				}
 			];
-			let _self = this;
+			this.setTableDta(dta);
+
 			this.$bus.emit("页面中改变我的位置",{
 				keyPath:["4","4-3"],
 				key:"4-3"
 			});
-			this.$bus.emit("改变Table数据",[dta,col])
+			this.$bus.emit("改变Table数据",[this.tableDta,col])
 		}
 
 	}

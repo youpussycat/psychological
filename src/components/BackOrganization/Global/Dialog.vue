@@ -7,11 +7,11 @@
       <div class="content">
         <div class="user_name">
           <span>{{userNameTitle}}</span>
-          <a-input @click="show" v-model:value="user_data.userName" maxlength="50" placeholder="请输入用户姓名" required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入用户姓名'"/>
+          <a-input @click="show" v-model:value="user_data.userName" @blur="change_name" placeholder="请输入用户姓名" required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入用户姓名'"/>
         </div>
         <div class="tel">
           <span>{{telTitle}}</span>
-          <a-input v-model:value="user_data.tel" placeholder="请输入手机号码" type="number" oninput="if(value.length > 11)value = value.slice(0, 11)" required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入手机号码'"/>
+          <a-input v-model:value="user_data.tel" placeholder="请输入手机号码" @blur="change_tel" type="number"  required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入手机号码'"/>
         </div>
         <div class="department">
           <span>{{departmentTitle}}</span>
@@ -40,20 +40,20 @@
         </div>
         <div class="account_name" v-show="!data.add">
           <span>{{accountNameTitle}}</span>
-          <a-input v-model:value="user_data.accountName" maxlength="50" placeholder="请输入账号名称" required="required" readonly/>
+          <a-input v-model:value="user_data.accountName" @blur="change_account" placeholder="请输入账号名称" required="required" readonly/>
         </div>
         <div class="account_name" v-show="data.add">
           <span>{{accountNameTitle}}</span>
-          <a-input v-model:value="user_data.accountName" maxlength="50" placeholder="请输入账号名称" required="required" onblur="this.placeholder='请输入账号名称'"/>
+          <a-input v-model:value="user_data.accountName" @blur="change_account" placeholder="请输入账号名称" required="required" onblur="this.placeholder='请输入账号名称'"/>
         </div>
         <div class="password" v-show="data.add">
           <span>{{passwordTitle}}</span>
-          <a-input v-model:value="user_data.password" type="password" @blur="change" placeholder="请输入账号密码" required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入密码'"/>
+          <a-input v-model:value="user_data.password" type="password" @blur="change_pwd" placeholder="请输入账号密码" required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入密码'"/>
           <button class="btn_pwd" @click="default_pwd">默认密码</button>
         </div>
         <div class="remark">
           <span>{{remarkTitle}}</span>
-          <a-input v-model:value="user_data.remark" maxlength="200" placeholder="请输入备注" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入备注'"/>
+          <a-input v-model:value="user_data.remark" @blur="change_remark" placeholder="请输入备注" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入备注'"/>
         </div>
         <div class="switch">
           <span>状态：</span>
@@ -65,10 +65,11 @@
     <button class="done" v-show="data.done" @click="done">确定</button>
     <Bubble class="bubble" v-show="bubble"/>
   </div>
+  <a-alert class="warning_bubble" :message="message" v-if="alert_show" closable @click="Onclose" type="error" show-icon/>
 </template>
 
 <script>
-import {Switch, Select, Input} from 'ant-design-vue';
+import {Switch, Select, Input, Alert} from 'ant-design-vue';
 import Bubble from "@/components/BackOrganization/Global/Bubble";
 export default {
   name:'Dialog',
@@ -111,13 +112,16 @@ export default {
         {value:'角色3', text:'角色3'}
       ],
       maxTagCount:2,
-      bubble: false
+      bubble: false,
+      alert_show: false,
+      message:''
     }
   },
   components:{
     ASwitch:Switch,
     ASelect:Select,
     AInput:Input,
+    AAlert:Alert,
     Bubble
   },
   methods:{
@@ -131,26 +135,79 @@ export default {
       this.data.show = !this.data.show;
       this.$bus.emit('callback_data', this.user_data);
     },
-    change(){
-      if(!this.password.match("^[A-Za-z0-9]{6,20}$")){
-        if(this.password.length === 0){
-          this.bubble = true;
-          this.$bus.emit('sendTitle', '密码不能为空');
-        } else if(this.password.length < 6){
-          this.bubble = true;
-          this.$bus.emit('sendTitle', '密码不能小于6位');
-        } else if(this.password.length > 20){
-          this.bubble = true;
-          this.$bus.emit('sendTitle', '密码不能大于20位');
+    change_tel(){
+      if(!this.user_data.tel.match("^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(17[0,3,5-8])|(18[0-9])|166|198|199|(147))\\d{8}$")){
+        if(this.user_data.tel.length === 11){
+          this.alert_show = true;
+          this.message = '不是合法手机号码';
+        } else if(this.user_data.tel.length === 0){
+          this.alert_show = true;
+          this.message = '手机号码不能为空';
+        } else if(this.user_data.tel.length > 11){
+          this.alert_show = true;
+          this.message = '手机号码位数大于11位';
+        } else if(this.user_data.tel.length < 11){
+          this.alert_show = true;
+          this.message = '手机号码位数小于11位';
+        }
+      }
+    },
+    change_remark(){
+      if(!this.user_data.remark.match("^[\u4e00-\u9fa5\\s\\S_a-zA-Z0-9_]{1,200}$")){
+        if(this.user_data.remark.length === 0){
+          this.alert_show = true;
+          this.message = '备注不能为空';
+        } else if(this.user_data.remark.length > 200){
+          this.alert_show = true;
+          this.message = '备注内容不能大于200字';
+        }
+      }
+    },
+    change_account(){
+      if(!this.user_data.accountName.match("^[\u4e00-\u9fa5\\s\\S_a-zA-Z0-9_]{1,50}$")){
+        if(this.user_data.accountName.length === 0){
+          this.alert_show = true;
+          this.message = '用户名称不能为空';
+        } else if(this.user_data.accountName.length > 50){
+          this.alert_show = true;
+          this.message = '用户名称不能大于50位';
+        }
+      }
+    },
+    change_pwd(){
+      if(!this.user_data.password.match("^[A-Za-z0-9]{6,20}$")){
+        if(this.user_data.password.length === 0){
+          this.alert_show = true;
+          this.message = '密码不能为空';
+        } else if(this.user_data.password.length < 6){
+          this.alert_show = true;
+          this.message = '密码不能小于6位';
+        } else if(this.user_data.password.length > 20){
+          this.alert_show = true;
+          this.message = '密码不能大于20位';
         } else {
-          this.bubble = true;
-          this.$bus.emit('sendTitle', '密码只能是英文和数字');
+          this.alert_show = true;
+          this.message = '密码只能是英文和数字';
+        }
+      }
+    },
+    change_name(){
+      if(!this.user_data.userName.match("^[\u4e00-\u9fa5\\s\\S_a-zA-Z0-9_]{1,50}$")){
+        if(this.user_data.userName.length === 0){
+          this.alert_show = true;
+          this.message = '用户姓名不能为空';
+        } else if(this.user_data.userName.length > 50){
+          this.alert_show = true;
+          this.message = '用户姓名不能大于50位';
         }
       }
     },
     default_pwd(){
       this.bubble = true;
       this.$bus.emit('sendTitle', '确定重置密码为123456吗？');
+    },
+    Onclose(){
+      this.alert_show = false;
     },
     open(){
       if(this.data.status === false){
@@ -360,5 +417,13 @@ input::-webkit-inner-spin-button {
   position: absolute;
   top: 100px;
   left: 200px;
+}
+
+.warning_bubble{
+  position: absolute;
+  top: 100px;
+  left: 630px;
+  width: 228px;
+  height: 30px;
 }
 </style>

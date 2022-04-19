@@ -1,6 +1,8 @@
 <template>
-	<div class="myBubble">
-		<my-bubble></my-bubble>
+	<div class="BubbleOutSide" v-if="bubbleDisplay">
+	</div>
+	<div class="myBubble" v-if="bubbleDisplay">
+		<my-bubble :title="bubbleTitle"></my-bubble>
 	</div>
 	<TopLogo></TopLogo>
 	<div class="TopLogoBottom">
@@ -47,7 +49,8 @@
 		data() {
 			return {
 				choosePage: "4-3",
-
+				bubbleTitle: "确定要删除吗？",
+				bubbleDisplay: 0,
 			};
 		},
 		mounted() {
@@ -59,12 +62,36 @@
 			this.$bus.on("返回Menu的选中key",(dta) => {
 				_self.choosePage = dta;
 			})
+
 		}
 
 	}
 </script>
 
 <style scoped>
+	.BubbleOutSide {
+		position: fixed;
+		width: 100%;
+		height: 100%;
+		top:0;
+		left:0;
+		opacity: 50%;
+		background-color: black;
+		z-index: 1001;
+
+	}
+	.myBubble {
+		position: fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		width: fit-content;
+		height: fit-content;
+		z-index: 1002;
+		background-color: white;
+	}
 	.TopLogoBottom {
 		display: flex;
 	}

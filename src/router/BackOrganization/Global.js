@@ -6,7 +6,7 @@
 const ComponentAttribute = [
 	"TopLogo",
 	"SideBar",
-	"Table",
+	"myTable",
 	"Menu",
 	"Dialog",
 	"Test",

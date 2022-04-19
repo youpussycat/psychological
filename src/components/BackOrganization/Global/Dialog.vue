@@ -7,7 +7,7 @@
       <div class="content">
         <div class="user_name">
           <span>{{userNameTitle}}</span>
-          <a-input @click="show" v-model:value="user_data.userName" @blur="change_name" placeholder="请输入用户姓名" required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入用户姓名'"/>
+          <a-input v-model:value="user_data.userName" @blur="change_name" placeholder="请输入用户姓名" required="required" :readonly="data.read?false:'readonly'" onblur="this.placeholder='请输入用户姓名'"/>
         </div>
         <div class="tel">
           <span>{{telTitle}}</span>
@@ -63,7 +63,8 @@
     </div>
     <button class="cancel" :class="{active: !data.done}" @click="cancel">取消</button>
     <button class="done" v-show="data.done" @click="done">确定</button>
-    <Bubble class="bubble" v-show="bubble"/>
+    <Bubble class="bubble" v-show="bubble_pwd" title="确定重置密码为123456吗？"/>
+    <Bubble class="bubble" v-show="bubble_forbidden" title="确定禁用吗？"/>
   </div>
   <a-alert class="warning_bubble" :message="message" v-if="alert_show" closable @click="Onclose" type="error" show-icon/>
 </template>
@@ -112,7 +113,8 @@ export default {
         {value:'角色3', text:'角色3'}
       ],
       maxTagCount:2,
-      bubble: false,
+      bubble_pwd: false,
+      bubble_forbidden: false,
       alert_show: false,
       message:''
     }
@@ -125,9 +127,6 @@ export default {
     Bubble
   },
   methods:{
-    show() {
-     console.log(this.userName)
-    },
     cancel(){
       this.data.show = !this.data.show;
     },
@@ -203,7 +202,7 @@ export default {
       }
     },
     default_pwd(){
-      this.bubble = true;
+      this.bubble_pwd = true;
       this.$bus.emit('sendTitle', '确定重置密码为123456吗？');
     },
     Onclose(){
@@ -211,7 +210,7 @@ export default {
     },
     open(){
       if(this.data.status === false){
-        this.bubble = true;
+        this.bubble_forbidden = true;
         this.$bus.emit('sendTitle', '确定禁用吗？');
       }
     },
@@ -234,22 +233,19 @@ export default {
     });
     this.$bus.on('sendPwd', (data)=>{
       this.user_data.password = data.pwd;
-      this.bubble = data.bubble;
+      this.bubble_pwd = data.bubble;
     });
     this.$bus.on('sendStatus', (data)=>{
       this.data.status = data.status;
       this.user_data.switch = data.status;
-      this.bubble = data.bubble;
+      this.bubble_forbidden = data.bubble;
     });
-    this.$bus.on('sendBubble', (data)=>{
-      this.bubble = data;
-    })
     this.$bus.on('pwd_cancel', (data)=>{
-      this.bubble = data;
+      this.bubble_pwd = data;
     });
     this.$bus.on('status_cancel', (data)=>{
       this.data.status = data.status;
-      this.bubble = data.bubble;
+      this.bubble_forbidden = data.bubble;
     });
     this.$bus.on('bubble_cancel', (data)=>{
       this.bubble = data;
@@ -261,7 +257,6 @@ export default {
     this.$bus.$off('sendStatus');
     this.$bus.$off('pwd_cancel');
     this.$bus.$off('status_cancel');
-    this.$bus.$off('sendBubble');
     this.$bus.$off('bubble_cancel');
   }
 }

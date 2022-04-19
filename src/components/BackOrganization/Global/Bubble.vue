@@ -9,20 +9,11 @@
 <script>
 export default {
   name:"Bubble",
-  data(){
-    return{
-      title:''
-    }
-  },
-  mounted() {
-    this.$bus.on('sendTitle',(title)=>{
-      this.title = title;
-    })
-  },
+  props:['title'],
   methods:{
     done(){
       if(this.title === '确定重置密码为123456吗？'){
-        const pwd_data = {pwd:123456, bubble:false};
+        const pwd_data = {pwd:'123456', bubble:false};
         this.$bus.emit('sendPwd', pwd_data);
       } else if(this.title === '确定禁用吗？'){
         const status_data = {status:false, bubble:false};
@@ -30,11 +21,7 @@ export default {
       } else if(this.title === '确定要删除吗？'){
         const delete_data = {bubble:false};
         this.$bus.emit('sendDelete', delete_data);
-      } else if(this.title === '密码不能为空' || this.title === '密码不能小于6位' || this.title === '密码不能大于20位' || this.title === '密码只能是英文和数字' ){
-        const bubble = false;
-        this.$bus.emit('sendBubble', bubble);
       }
-
     },
     cancel(){
       if(this.title === '确定重置密码为123456吗？') {
@@ -46,9 +33,6 @@ export default {
       } else if(this.title === '确定要删除吗？'){
         const delete_data = {bubble:false};
         this.$bus.emit('delete_cancel', delete_data);
-      } else if(this.title === '密码不能为空' || this.title === '密码不能小于6位' || this.title === '密码不能大于20位' || this.title === '密码只能是英文和数字' ){
-        const bubble = false;
-        this.$bus.emit('bubble_cancel', bubble);
       }
     }
   }

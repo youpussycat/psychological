@@ -74,22 +74,15 @@
 				_self.bubbleDisplay = true;
 				_self.bubbleTitle = title;
 			})
-			this.$bus.on("关闭气泡",function(){
-				_self.bubbleDisplay = false;
-			})
-			this.$bus.on("显现角色数据栏",() => {
-				_self.addCharacterDisplay = true;
-			})
-			this.$bus.on("关闭角色数据栏",() => {
-				_self.addCharacterDisplay = false;
-			})
+
+
 			this.$bus.on("改变TotalShow数据",([key,dta]) => {
 				_self[key] = dta;
 			})
 
 		},
 		onBeforeUnmount() {
-			let busArray = ["返回Menu的选中key","显现气泡","关闭气泡","关闭角色数据栏","显现角色数据栏","改变TotalShow数据"];
+			let busArray = ["返回Menu的选中key","显现气泡","改变TotalShow数据"];
 			for(let it of busArray)
 				this.$bus.off(it);
 		}

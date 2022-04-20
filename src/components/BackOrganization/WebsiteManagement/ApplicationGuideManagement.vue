@@ -28,7 +28,7 @@ export default{
 
 <style scoped>
 .position{
-  box-sizing: border-box;
-  margin-left: 310px;
+  position: absolute;
+  left: 310px;
 }
 </style>

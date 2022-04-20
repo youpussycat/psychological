@@ -6,7 +6,7 @@
                 margin-right:${_label.segment}px;
             `">{{_label.tip}}</span>
             <label class="SearchInput" :style="`
-                width:${_label.input.width ? _label.input.width+'px' : 'auto'};
+                width:${_label.input.width ? _label.input.width+'px' : 'fit-content'};
                 ${_label.input.type=='select' ? 'border:0;background:#0000':''};
             `">
 
@@ -90,7 +90,7 @@
     #searchContext{
         width: 1610px;height:100px;
         background: #EEE;
-        border: 1px solid #BBB;
+        /*border: 1px solid #BBB;*/
         padding-left: 34px;
     }
     .SearchUnit{

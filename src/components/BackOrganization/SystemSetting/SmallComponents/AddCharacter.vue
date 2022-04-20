@@ -66,6 +66,9 @@
 			this.$bus.on("获取树数据",(dta) => {
 				_self.treeData = dta;
 			})
+			this.$bus.on("改变AddCharacter数据", (dta) => {
+				_self[dta.key] = dta.value;
+			})
 		},
 		methods:{
 			getAddCharacterData(){
@@ -77,13 +80,14 @@
 					name: this.characterName,
 				};
 				console.log("确定",dta);
+
 				if(dta.treeDta.length===0 || !dta.name){
 					this.$bus.emit("显现气泡","带*的数据必须填写");
 					return;
 				}
 				//数据传输到服务器上,并在表格中显现
 				if(this.PageStatus==="add") {
-
+					this.$bus.emit("addCharacter回复",{dta:dta,PageStatus:this.PageStatus})
 				}
 				else if(this.PageStatus==="change") {
 

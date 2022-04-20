@@ -3,7 +3,7 @@
 		<div class="SearchMenu">
 			<SearchBar></SearchBar>
 		</div>
-		<Button class="AddCharacterButton" @click="this.$bus.emit('改变TotalShow数据',['addCharacterTitle','新增角色']);this.$bus.emit('改变TotalShow数据',['addCharacterDisplay',true])">新增角色</Button>
+		<Button class="AddCharacterButton" @click="this.$bus.emit('改变TotalShow数据',['addCharacterTitle','新增角色']);this.$bus.emit('改变AddCharacter数据',{key:'PageStatus',value: 'add' });this.$bus.emit('改变TotalShow数据',['addCharacterDisplay',true])">新增角色</Button>
 	</div>
 	<div class="myTableInCharacterMan">
 		<my-table></my-table>
@@ -30,7 +30,7 @@
 		methods: {
 			butnProduction: function(ll){
 				let _self = ll;//此时为data返回值
-				return [
+				let dta = [
 					{
 						text: "编辑",
 						cont: _self.keyCont,
@@ -39,9 +39,10 @@
 							_self.UsingKey = this.cont;
 							//调用编辑窗口
 							_self.$bus.emit("改变TotalShow数据",["addCharacterTitle","编辑角色"])
+							_self.$bus.emit('改变AddCharacter数据',{key:'PageStatus',value: 'change' });
 							_self.$bus.emit("改变TotalShow数据",["addCharacterDisplay",true])
 							//修改addcharacter中的switchChecked，和名字和备注和状态
-							//下面写totalshow文件的气泡确认change事件总线修改表和数据库
+							//totalshow文件的事件总线修改表和数据库
 
 						}
 					},
@@ -52,10 +53,10 @@
 							console.log(_self.tableDta[this.cont])
 							_self.UsingKey = this.cont;
 							if(_self.tableDta[this.cont].using) {//被引用
-								_self.$bus.emit("显现气泡", "该角色已被引用，确定禁用吗");
+								_self.$bus.emit("显现气泡", "该角色已被引用，确定禁用吗？");
 							}
 							else{
-								_self.$bus.emit("显现气泡", "确定禁用该角色吗");
+								_self.$bus.emit("显现气泡", "确定禁用该角色吗？");
 							}
 						}
 					},
@@ -64,26 +65,38 @@
 						cont: _self.keyCont,
 						click: function(){
 							console.log(_self.tableDta[this.cont]);
-							_self.$bus.emit("显现气泡", "确定删除该角色吗");
+							_self.UsingKey = this.cont;
+							_self.$bus.emit("显现气泡", "确定删除该角色吗？");
 						}
 					}
 				];
+				return dta;
 			},
 			setTableDta: function(dta) {
 				this.tableDta=[];
+				this.keyCont = 1;
 				for(let i of dta){
 					i["buttons"] = this.$options.methods.butnProduction(this);
 					i['status'] = i.characterStatus?"启用":"禁用";
+					i['key'] = this.keyCont;
+					i['index'] = this.keyCont++;
 					this.tableDta.push(i);
 				}
-			}
+			},
+			addTableDta: function(dta) {
+				dta["buttons"] = this.$options.methods.butnProduction(this);
+				dta['status'] = dta.characterStatus?"启用":"禁用";
+				dta['key'] = this.keyCont;
+				dta['index'] = this.keyCont++;
+				this.tableDta.push(dta);
+			},
 		},
 
 		data() {
 			return {
 				name: "本vue的dta",
 				tableDta: [],
-				keyCont: 0,
+				keyCont: 1,
 				UsingKey: -1,
 				bubbleEndStatus: -1,
 			};
@@ -162,6 +175,13 @@
 				}
 				_self.$bus.emit("改变TotalShow数据",['bubbleDisplay',false]);
 			})
+			this.$bus.on("addCharacter回复", (dta) => {
+					if(dta.PageStatus === 'add'){
+						_self.addTableDta(dta.dta)
+
+					}
+
+			})
 			//改变搜索框样式
 			//left为数据项的左侧宽度，segment为文字与输入框间的距离
 			//buttonLeft是数据项与搜索按钮的距离
@@ -169,13 +189,43 @@
 			//value为默认值或选项，为选项时数据类型为字符串数组，默认选项为选项值的第一个
 			//tip为input前面文字说明。
 			//input内部的width为input的宽度
+			/*
+			let searchStyle = [
+				{
+					value: {
+						left: 0,
+						segment: 0,
+						tip: '',
+						input: {
+							value: "请输入角色名称进行查询",
+							width: 200
+						}
+					},
+					key:"labelList"
+				},
+				{
+					key:"buttonLeft",
+					value:18
+				}
+
+			]
 
 
+
+			for(let i of searchStyle)
+				this.$bus.emit("修改SearchBar数据",i);
+		*/
 
 			let dta = [
 				{
-					key: '1',
-					index: 1,
+					name: "李狗蛋",
+					remarks: "别名 李靖",
+					characterStatus: true,
+					using: 0,
+					power: ["0-0-1",'0-1-0'],
+					powerDetails:['0','0-0','0-0-1','0-1','0-1-0']
+				},
+				{
 					name: "李狗蛋",
 					remarks: "别名 李靖",
 					characterStatus: true,

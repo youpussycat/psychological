@@ -58,8 +58,8 @@
         },
         mounted() {
             let _self=this;
-            this.$bus.on("修改SearchBar数据",(_data)=>{
-                _self.data=_data;
+            this.$bus.on("修改SearchBar数据",(dta)=>{
+                _self[dta.key] = dta.value;
             });
         },
         onBeforeUnmount() {

@@ -189,10 +189,10 @@
 			//value为默认值或选项，为选项时数据类型为字符串数组，默认选项为选项值的第一个
 			//tip为input前面文字说明。
 			//input内部的width为input的宽度
-			/*
+
 			let searchStyle = [
 				{
-					value: {
+					value: [{
 						left: 0,
 						segment: 0,
 						tip: '',
@@ -200,7 +200,7 @@
 							value: "请输入角色名称进行查询",
 							width: 200
 						}
-					},
+					}],
 					key:"labelList"
 				},
 				{
@@ -210,11 +210,9 @@
 
 			]
 
-
-
 			for(let i of searchStyle)
 				this.$bus.emit("修改SearchBar数据",i);
-		*/
+
 
 			let dta = [
 				{

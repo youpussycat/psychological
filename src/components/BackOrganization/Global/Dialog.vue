@@ -230,7 +230,7 @@ export default {
   mounted(){
     this.$bus.on('sendData', (data)=>{
       this.data = data;
-    });
+    }); //打开弹窗
     this.$bus.on('sendPwd', (data)=>{
       this.user_data.password = data.pwd;
       this.bubble_pwd = data.bubble;

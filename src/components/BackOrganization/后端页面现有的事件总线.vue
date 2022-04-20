@@ -81,7 +81,69 @@ SystemSetting/AddCharacter
 ###定义的位置
 SystemSetting/SmallComponents/TreeGroup
 
+```武世超编写的```
+#BackOrganization文件下的Global文件下的Dialog文件
+##1.
+###type
+"sendData"
+###作用
+接收弹窗所需的内容
+###所需参数
+一个对象，内容包括是否显示弹窗、弹窗的标题、是否为添加用户、switch开关是否开启、input框是否只读，false:只读，true:可编辑、是否有确认按钮
+###定义的位置
+BackOrganization/Global/Dialog
 
+##2.
+###type
+"sendPwd"
+###作用
+接收更改后的密码
+###所需参数
+一个字符串
+###定义的位置
+BackOrganization/Global/Dialog
+
+##3.
+###type
+"sendStatus"
+###作用
+接收更改后 switch 开关的状态
+###所需参数
+一个 boolean 值
+###定义的位置
+BackOrganization/Global/Dialog
+
+##4.
+###type
+"pwd_cancel"
+###作用
+关闭修改密码的弹窗
+###所需参数
+一个 boolean 值
+###定义的位置
+BackOrganization/Global/Dialog
+
+##5.
+###type
+"status_cancel"
+###作用
+关闭修改 switch 开关的弹窗，并修改 switch 开关的状态
+###所需参数
+一个对象，内容包括开关状态，气泡是否显示
+###定义的位置
+BackOrganization/Global/Dialog
+
+
+#BackOrganization文件下的Global文件下的Test文件（用于测试，后续可删）
+##1.
+###type
+"callback_data"
+###作用
+接收弹窗内的用户信息
+###所需参数
+一个对象，内容包括用户姓名、用户电话、所属部门、所属角色、账号名称、用户密码、备注
+###定义的位置
+BackOrganization/Global/Dialog
 
 	-->
 </template>

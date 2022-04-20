@@ -22,6 +22,16 @@ export default {
         const delete_data = {bubble:false};
         this.$bus.emit('sendDelete', delete_data);
       }
+
+      let data = [];
+      if(this.title === '确定删除该角色吗？'){
+        data = [true, 'delete'];
+      } else if(this.title === '该角色已被引用,确定禁用吗？' || this.title === '确定禁用该角色吗？'){
+        data = [true, 'off']
+      } else {
+        data = [true, 'null']
+      }
+      this.$bus.emit('气泡回复', data);
     },
     cancel(){
       if(this.title === '确定重置密码为123456吗？') {

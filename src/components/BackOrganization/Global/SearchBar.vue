@@ -47,7 +47,11 @@
             loadLabel(_event,_label){
                 let _elem=_event.target;
                 console.log(this,_label);
-            }
+            },
+
+        },
+        mounted() {
+
         },
         data () {
             return {

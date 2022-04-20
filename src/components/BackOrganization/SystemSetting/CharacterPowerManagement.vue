@@ -3,7 +3,7 @@
 		<div class="SearchMenu">
 			<SearchBar></SearchBar>
 		</div>
-		<Button class="AddCharacterButton" @click="this.$bus.emit('改变TotalShow数据',['addCharacterTitle','新增角色']);this.$bus.emit('显现角色数据栏')">新增角色</Button>
+		<Button class="AddCharacterButton" @click="this.$bus.emit('改变TotalShow数据',['addCharacterTitle','新增角色']);this.$bus.emit('改变TotalShow数据',['addCharacterDisplay',true])">新增角色</Button>
 	</div>
 	<div class="myTableInCharacterMan">
 		<my-table></my-table>
@@ -136,7 +136,7 @@
 					if(titleStatus==="delete"){
 						//是否被引用
 						if(_self.tableDta[_self.UsingKey].using) {
-							_self.$bus.emit("关闭气泡");
+							_self.$bus.emit("改变TotalShow数据",['bubbleDisplay',false]);
 							_self.$bus.emit("显现气泡", "该角色已被引用，不可被删除");
 						}
 						else{
@@ -160,6 +160,7 @@
 						_self.UsingKey = -1;
 					}
 				}
+				_self.$bus.emit("改变TotalShow数据",['bubbleDisplay',false]);
 			})
 			//改变搜索框样式
 			//left为数据项的左侧宽度，segment为文字与输入框间的距离

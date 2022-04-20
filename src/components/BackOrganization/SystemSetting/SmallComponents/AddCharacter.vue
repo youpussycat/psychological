@@ -6,7 +6,7 @@
 					{{title}}
 				</div>
 				<div class="characterX">
-					<close-outlined @click="this.$bus.emit('关闭角色数据栏')"/>
+					<close-outlined @click="this.$bus.emit('改变TotalShow数据',['addCharacterDisplay',false])"/>
 				</div>
 			</div>
 			<div class="characterName">
@@ -27,7 +27,7 @@
 				<a-switch v-model:checked="switchChecked" />
 			</div>
 			<div class="characterChoose">
-				<a-button class="characterCancel" @click="this.$bus.emit('关闭角色数据栏')" >取消</a-button>
+				<a-button class="characterCancel" @click="this.$bus.emit('改变TotalShow数据',['addCharacterDisplay',false])" >取消</a-button>
 				<a-button class="characterSure" @click="getAddCharacterData()">确定</a-button>
 			</div>
 		</div>
@@ -88,7 +88,7 @@
 				else if(this.PageStatus==="change") {
 
 				}
-				this.$bus.emit("关闭角色数据栏");
+				this.$bus.emit('改变TotalShow数据',['addCharacterDisplay',false]);
 
 
 			},

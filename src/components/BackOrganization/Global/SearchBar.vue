@@ -18,17 +18,18 @@
                     <option v-for="_opt in _label.input.value">{{_opt}}</option>
                 </select>
                 <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='date'"
-                        type="date"
+                        type="date" style="padding-left:20px;width: 86%"
                 >
             </label>
             <label class="SearchInput" v-if="_label.input.type==='date'" :style="`
                 position:relative;
                 ${_label.input.type=='date' ? 'border-left:0;':''}
             `">
+                <div id="clockIcon"></div>
                 <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='date'"
                         type="date"
                 >
-                <span id="timeSpan" style="position: absolute;left: -25px;top:4px;">至</span>
+                <span id="timeSpan" >至</span>
             </label>
         </div>
         <button id="searchBtn" class="SubmitButton" @click="searchButton"
@@ -124,8 +125,28 @@
         background: #FFF;
         display: inline-block;
     }
+    #clockIcon{
+        width: 14px;height: 14px;
+        border: 1px solid #C1C2C5;
+        border-radius: 50%;position: absolute;
+        left: -161px;top:8px;
+    }
+    #clockIcon:before{
+        display: block;position: absolute;
+        left: 4px;top:3px;
+        content: '';width: 5px;height: 1px;
+        background: #C1C2C5;transform: rotate(90deg);
+    }
+    #clockIcon:after{
+        display: block;position: absolute;
+        content: '';width: 5px;height: 1px;
+        left: 6px;top: 7px;
+        background: #C1C2C5;transform: rotate(30deg);
+    }
     #timeSpan{
-
+        position: absolute;left: -25px;top:4px;
+        font-size: 14px;
+        color:#000;
     }
 
 

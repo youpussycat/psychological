@@ -44,6 +44,9 @@ export default {
         const delete_data = {bubble:false};
         this.$bus.emit('delete_cancel', delete_data);
       }
+
+      const data = [false, 'null'];
+      this.$bus.emit('气泡回复', data);
     }
   }
 }

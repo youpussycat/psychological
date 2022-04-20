@@ -8,6 +8,7 @@
             <label class="SearchInput" :style="`
                 width:${_label.input.width ? _label.input.width+'px' : 'auto'};
                 ${_label.input.type=='select' ? 'border:0;background:#0000':''};
+                ${_label.input.type=='date' ? 'border-right:0;':''}
             `">
 
                 <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='text'"
@@ -17,13 +18,17 @@
                     <option v-for="_opt in _label.input.value">{{_opt}}</option>
                 </select>
                 <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='date'"
-                        :placeholder="_label.input.value"
+                        type="date"
                 >
             </label>
-            <label v-if="_label.input.type==='date'">
+            <label class="SearchInput" v-if="_label.input.type==='date'" :style="`
+                position:relative;
+                ${_label.input.type=='date' ? 'border-left:0;':''}
+            `">
                 <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='date'"
-                        :placeholder="_label.input.value"
+                        type="date"
                 >
+                <span id="timeSpan" style="position: absolute;left: -25px;top:4px;">至</span>
             </label>
         </div>
         <button id="searchBtn" class="SubmitButton" @click="searchButton"
@@ -33,8 +38,8 @@
 </template>
 
 <script>
-    //  /BackOrganization/Global/SearchBar
-    export default {
+
+    export default {//  /BackOrganization/Global/SearchBar
         name: 'SearchBar',
         methods:{
             searchButton(){
@@ -75,13 +80,13 @@
 
                         left:0,segment:14,
                         name:"belongTo",tip:"所属页面",
-                        input:{type:"select",value:[
+                        input:{type:"select",value:[//默认type:"text",
                             "首页","政策文件","通知公告","报考指南","师资风采","培训纪实","下载中心",
                         ]}
                     },{
                         left:79,segment:25,
-                        name:"imgName",tip:"图片名称",
-                        input:{value:"单行输入"}//默认type:"text",
+                        name:"imgName",tip:"日期",
+                        input:{type:"date"}
                     },{
                         left:122,segment:8,
                         name:"status",tip:"状态",
@@ -101,6 +106,7 @@
         background: #EEE;
         /*border: 1px solid #BBB;*/
         padding-left: 34px;
+        white-space: nowrap;
     }
     .SearchUnit{
         display: inline;
@@ -117,6 +123,9 @@
         padding-left: 6px;
         background: #FFF;
         display: inline-block;
+    }
+    #timeSpan{
+
     }
 
 

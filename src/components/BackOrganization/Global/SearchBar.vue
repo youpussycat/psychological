@@ -16,6 +16,14 @@
                 <select :name="_label.name" v-if="_label.input.type=='select'">
                     <option v-for="_opt in _label.input.value">{{_opt}}</option>
                 </select>
+                <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='date'"
+                        :placeholder="_label.input.value"
+                >
+            </label>
+            <label v-if="_label.input.type==='date'">
+                <input  :name="_label.name" v-if="!_label.input.type || _label.input.type=='date'"
+                        :placeholder="_label.input.value"
+                >
             </label>
         </div>
         <button id="searchBtn" class="SubmitButton" @click="searchButton"

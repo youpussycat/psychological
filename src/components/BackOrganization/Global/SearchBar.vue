@@ -103,7 +103,7 @@
 
 <style scoped>
     #searchContext{
-        width: fit-content;height:100px;
+        width: fit-content;height:100%;
         background: #EEE;
         /*border: 1px solid #BBB;*/
         padding-left: 34px;

@@ -32,9 +32,11 @@
                 <span id="timeSpan" >至</span>
             </label>
         </div>
-        <button id="searchBtn" class="SubmitButton" @click="searchButton"
-                :style="`margin-left:${buttonLeft}px;`">查询</button>
-        <button id="resetBtn" class="SubmitButton">重置</button>
+        <div style="display: table-cell;vertical-align: middle;">
+            <button id="searchBtn" class="SubmitButton" @click="searchButton"
+                    :style="`margin-left:${buttonLeft}px;`">查询</button>
+            <button id="resetBtn" class="SubmitButton">重置</button>
+        </div>
     </div>
 </template>
 
@@ -108,9 +110,11 @@
         /*border: 1px solid #BBB;*/
         padding-left: 34px;
         white-space: nowrap;
+        display: table;
     }
     .SearchUnit{
-        display: inline;
+        display: table-cell;
+        vertical-align: middle;
         height: 30px;
     }
     .SearchText{
@@ -157,7 +161,7 @@
         text-align: center;
         font-size: 14px;
         line-height: 20px;
-        margin-top: 30px;
+
     }
     #searchBtn{
         color: rgba(255, 255, 255, 100);

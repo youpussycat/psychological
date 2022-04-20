@@ -6,7 +6,7 @@
                 margin-right:${_label.segment}px;
             `">{{_label.tip}}</span>
             <label class="SearchInput" :style="`
-                width:${_label.input.width ? _label.input.width+'px' : 'fit-content'};
+                width:${_label.input.width ? _label.input.width+'px' : 'auto'};
                 ${_label.input.type=='select' ? 'border:0;background:#0000':''};
             `">
 
@@ -33,6 +33,7 @@
 </template>
 
 <script>
+    //  /BackOrganization/Global/SearchBar
     export default {
         name: 'SearchBar',
         methods:{
@@ -51,7 +52,15 @@
 
         },
         mounted() {
-
+            let _self=this;
+            this.$bus.on("修改SearchBar数据",(_data)=>{
+                _self.data=_data;
+            });
+        },
+        onBeforeUnmount() {
+            let busArray = ["修改SearchBar数据"];
+            for(let it of busArray)
+                this.$bus.off(it);
         },
         data () {
             return {
@@ -88,7 +97,7 @@
 
 <style scoped>
     #searchContext{
-        width: 1610px;height:100px;
+        width: fit-content;height:100px;
         background: #EEE;
         /*border: 1px solid #BBB;*/
         padding-left: 34px;

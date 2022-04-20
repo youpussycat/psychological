@@ -1,8 +1,11 @@
 <template>
-	<div class="BubbleOutSide" v-if="bubbleDisplay">
+	<div class="OutSide" v-if="bubbleDisplay||addCharacterDisplay">
 	</div>
 	<div class="myBubble" v-if="bubbleDisplay">
 		<my-bubble :title="bubbleTitle"></my-bubble>
+	</div>
+	<div class="addCharacter" v-if="addCharacterDisplay">
+		<add-character :title="addCharacterTitle"></add-character>
 	</div>
 	<TopLogo></TopLogo>
 	<div class="TopLogoBottom">
@@ -29,6 +32,7 @@
 	import MyPosition from "@/components/BackOrganization/Global/MyPosition";
 	import Table from "@/components/BackOrganization/Global/myTable";
 	import Bubble from "@/components/BackOrganization/Global/Bubble";
+	import AddCharacter from "@/components/BackOrganization/SystemSetting/SmallComponents/AddCharacter";
 	import MyMenu from "@/components/BackOrganization/Global/myMenu";
 	import CharacterPowerManagement from "@/components/BackOrganization/SystemSetting/CharacterPowerManagement";
 	export default {
@@ -41,6 +45,8 @@
 			TopLogo,
 			CharacterPowerManagement,
 			MyBubble: Bubble,
+			AddCharacter,
+
 
 		},
 		methods: {
@@ -51,6 +57,8 @@
 				choosePage: "4-3",
 				bubbleTitle: "确定要删除吗？",
 				bubbleDisplay: 0,
+				addCharacterDisplay:0,
+				addCharacterTitle: "新增角色",
 			};
 		},
 		mounted() {
@@ -62,14 +70,35 @@
 			this.$bus.on("返回Menu的选中key",(dta) => {
 				_self.choosePage = dta;
 			})
+			this.$bus.on("显现气泡",function(title){
+				_self.bubbleDisplay = true;
+				_self.bubbleTitle = title;
+			})
+			this.$bus.on("关闭气泡",function(){
+				_self.bubbleDisplay = false;
+			})
+			this.$bus.on("显现角色数据栏",() => {
+				_self.addCharacterDisplay = true;
+			})
+			this.$bus.on("关闭角色数据栏",() => {
+				_self.addCharacterDisplay = false;
+			})
+			this.$bus.on("改变TotalShow数据",([key,dta]) => {
+				_self[key] = dta;
+			})
 
+		},
+		onBeforeUnmount() {
+			let busArray = ["返回Menu的选中key","显现气泡","关闭气泡","关闭角色数据栏","显现角色数据栏","改变TotalShow数据"];
+			for(let it of busArray)
+				this.$bus.off(it);
 		}
 
 	}
 </script>
 
 <style scoped>
-	.BubbleOutSide {
+	.OutSide {
 		position: fixed;
 		width: 100%;
 		height: 100%;

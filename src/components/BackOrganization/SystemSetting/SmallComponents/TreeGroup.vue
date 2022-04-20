@@ -112,6 +112,7 @@
 			let _self = this;
 			this.$bus.on("获取树节点",() => {
 				_self.allCheckedKeys.sort();
+				let treedata = [];
 				for(let it of _self.allCheckedKeys) {
 					let dta = it.split('-');
 					let runCode = "treeData";
@@ -124,13 +125,18 @@
 							runCode += `.children[${dta[i]}]`;
 						}
 					}
-					eval(`console.log(${runCode});`);
+					console.log("runCode",runCode)
+					eval(`treedata.push(${runCode});`);
 
 				}
+				console.log(treedata)
+				_self.$bus.emit("获取树数据",treedata);
 			});
 		},
 		onBeforeUnmount() {
-			this.$bus.off("获取树节点");
+			let busArray = ['获取树节点'];
+			for(let it of busArray)
+				this.$bus.off(it);
 		}
 
 	}

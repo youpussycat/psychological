@@ -3,16 +3,16 @@
 		<div class="addCharacter">
 			<div class="characterTop">
 				<div class="characterTitle">
-					新增角色
+					{{title}}
 				</div>
 				<div class="characterX">
-					<close-outlined />
+					<close-outlined @click="this.$bus.emit('关闭角色数据栏')"/>
 				</div>
 			</div>
 			<div class="characterName">
 				<span class="redMark">*</span>
 				<label class="promptWord" for="characterName">角色名称：</label>
-				<input type="text" placeholder="请输入角色名称" id="characterName">
+				<input type="text" placeholder="请输入角色名称" id="characterName" v-model="characterName">
 			</div>
 			<div class="characterAuthority">
 				<span class="redMark">*</span>
@@ -20,14 +20,14 @@
 			</div>
 			<div class="characterRemarks">
 				<label class="promptWord" for="remarks">备注：</label>
-				<input type="text" placeholder="请输入备注" id="remarks">
+				<input type="text" placeholder="请输入备注" id="remarks" v-model="characterRemarks">
 			</div>
 			<div class="characterStatus">
 				<p class="promptWord">状态：</p>
 				<a-switch v-model:checked="switchChecked" />
 			</div>
 			<div class="characterChoose">
-				<a-button class="characterCancel" >取消</a-button>
+				<a-button class="characterCancel" @click="this.$bus.emit('关闭角色数据栏')" >取消</a-button>
 				<a-button class="characterSure" @click="getAddCharacterData()">确定</a-button>
 			</div>
 		</div>
@@ -51,14 +51,46 @@
 			CloseOutlined,
 
 		},
+		data(){
+			return {
+				characterName: "",
+				characterRemarks: "",
+				treeData: [],
+				PageStatus: "add",
+
+			};
+		},
+		props:['title'],
+		mounted() {
+			let _self = this;
+			this.$bus.on("获取树数据",(dta) => {
+				_self.treeData = dta;
+			})
+		},
 		methods:{
 			getAddCharacterData(){
-				let a = this.$bus.emit("获取树节点");
-				let treeData = {...a};
-				return {
-					status: this.switchChecked,
+				this.$bus.emit("获取树节点");
+				let dta = {
+					treeDta: this.treeData,
+					switchStatus: this.switchChecked,
+					remarks: this.characterRemarks,
+					name: this.characterName,
+				};
+				console.log("确定",dta);
+				if(dta.treeDta.length===0 || !dta.name){
+					this.$bus.emit("显现气泡","带*的数据必须填写");
+					return;
+				}
+				//数据传输到服务器上,并在表格中显现
+				if(this.PageStatus==="add") {
 
 				}
+				else if(this.PageStatus==="change") {
+
+				}
+				this.$bus.emit("关闭角色数据栏");
+
+
 			},
 
 		},
@@ -68,13 +100,22 @@
 				switchChecked,
 			};
 		},
-
+		onBeforeUnmount() {
+			let busArray = ['获取树数据'];
+			for(let it of busArray)
+				this.$bus.off(it);
+			console.log("AddCharacter即将销毁");
+			this.$bus.emit("获取树数据")
+			console.log("'获取树数据'销毁")
+		}
 
 	}
 </script>
 <style scoped>
 	.addCharacterTotal {
-		position: absolute;
+		z-index: 1001;
+		background-color: white;
+		position: fixed;
 		width: fit-content;
 		height: fit-content;
 		margin: auto;

@@ -66,6 +66,9 @@
 			this.$bus.on("获取树数据",(dta) => {
 				_self.treeData = dta;
 			})
+			this.$bus.on("改变AddCharacter数据", (dta) => {
+				_self[dta.key] = dta.value;
+			})
 		},
 		methods:{
 			getAddCharacterData(){
@@ -84,7 +87,7 @@
 				}
 				//数据传输到服务器上,并在表格中显现
 				if(this.PageStatus==="add") {
-
+					this.$bus.emit("addCharacter回复",{dta:dta,PageStatus:this.PageStatus})
 				}
 				else if(this.PageStatus==="change") {
 

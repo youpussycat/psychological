@@ -49,13 +49,33 @@ Global/MyMenu
 ###定义的位置
 Global/TotalShow
 
+##2
+###type
+"显现气泡"
+###传参
+一个字符串表示气泡的title
+###定义位置
+Global/TotalShow
+
+
+#SystemSetting的AddCharacter文件下
+##1.
+###type
+"获取树数据"
+###作用
+将AddCharacter文件中的treeData数据进行改变
+###所需参数
+一个用于改变treeData变量的数据
+###定义的位置
+SystemSetting/AddCharacter
+
 
 #SystemSetting的TreeGroup文件下
 ##1.
 ###type
 "获取树节点"
 ###作用
-将TreeGroup中已选择节点和他们的父节点输出
+将TreeGroup中已选择节点和他们的父节点的数据集合成数组，并将该数组当作事件总线"获取树数据"的参数传入，以此改变AddCharacter文件中的treeData变量
 ###所需参数
 无
 ###定义的位置

@@ -3,7 +3,7 @@
 // /BackOrganization/你的组件名称
 
 const ComponentAttribute = [
-	"BackLogin"
+	"BackLogin",
 ]
 const RouterPath = "/BackOrganization/"
 

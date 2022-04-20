@@ -65,7 +65,7 @@
 		 top: 5px;
 	 }
 	.TopLogoLeft {
-		position: sticky;
+		position: fixed;
 		top: 0;
 		left: 0;
 	}

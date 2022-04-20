@@ -55,7 +55,7 @@
 		data() {
 			return {
 				choosePage: "4-3",
-				bubbleTitle: "确定要删除吗？",
+				bubbleTitle: "确定删除该角色吗？",
 				bubbleDisplay: 0,
 				addCharacterDisplay:0,
 				addCharacterTitle: "新增角色",
@@ -118,7 +118,7 @@
 		display: flex;
 	}
 	.mymenu {
-
+		width: 309px
 	}
 	.mymenuElse {
 		flex-grow: 1;

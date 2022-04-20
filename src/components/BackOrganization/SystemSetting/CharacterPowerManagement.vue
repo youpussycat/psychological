@@ -41,7 +41,7 @@
 							_self.$bus.emit("改变TotalShow数据",["addCharacterTitle","编辑角色"])
 							_self.$bus.emit("改变TotalShow数据",["addCharacterDisplay",true])
 							//修改addcharacter中的switchChecked，和名字和备注和状态
-							//下面写totalshow文件的气泡确认change事件总线修改表和数据库
+							//totalshow文件的事件总线修改表和数据库
 
 						}
 					},
@@ -52,10 +52,10 @@
 							console.log(_self.tableDta[this.cont])
 							_self.UsingKey = this.cont;
 							if(_self.tableDta[this.cont].using) {//被引用
-								_self.$bus.emit("显现气泡", "该角色已被引用，确定禁用吗");
+								_self.$bus.emit("显现气泡", "该角色已被引用，确定禁用吗？");
 							}
 							else{
-								_self.$bus.emit("显现气泡", "确定禁用该角色吗");
+								_self.$bus.emit("显现气泡", "确定禁用该角色吗？");
 							}
 						}
 					},
@@ -64,7 +64,8 @@
 						cont: _self.keyCont,
 						click: function(){
 							console.log(_self.tableDta[this.cont]);
-							_self.$bus.emit("显现气泡", "确定删除该角色吗");
+							_self.UsingKey = this.cont;
+							_self.$bus.emit("显现气泡", "确定删除该角色吗？");
 						}
 					}
 				];
@@ -162,6 +163,9 @@
 				}
 				_self.$bus.emit("改变TotalShow数据",['bubbleDisplay',false]);
 			})
+			this.$bus.on("CharacterPower数据更改",([key,value])=>{
+				_self.tableDta
+			})
 			//改变搜索框样式
 			//left为数据项的左侧宽度，segment为文字与输入框间的距离
 			//buttonLeft是数据项与搜索按钮的距离
@@ -169,8 +173,32 @@
 			//value为默认值或选项，为选项时数据类型为字符串数组，默认选项为选项值的第一个
 			//tip为input前面文字说明。
 			//input内部的width为input的宽度
+			/*
+			let searchStyle = [
+				{
+					value: {
+						left: 0,
+						segment: 0,
+						tip: '',
+						input: {
+							value: "请输入角色名称进行查询",
+							width: 200
+						}
+					},
+					key:"labelList"
+				},
+				{
+					key:"buttonLeft",
+					value:18
+				}
+
+			]
 
 
+
+			for(let i of searchStyle)
+				this.$bus.emit("修改SearchBar数据",i);
+		*/
 
 			let dta = [
 				{

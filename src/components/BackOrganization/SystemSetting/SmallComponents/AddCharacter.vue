@@ -77,6 +77,7 @@
 					name: this.characterName,
 				};
 				console.log("确定",dta);
+
 				if(dta.treeDta.length===0 || !dta.name){
 					this.$bus.emit("显现气泡","带*的数据必须填写");
 					return;
